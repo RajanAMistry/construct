@@ -1,0 +1,10 @@
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+token.json
