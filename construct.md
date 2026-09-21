@@ -37,7 +37,11 @@ Construct is public. Private notes, personal records and employer material belon
 
 ## Skill index
 
-No skills are implemented yet. The folders above reserve categories, not completed capabilities. When adding a skill, record its name, relative link, purpose, status and verification evidence in this section. Use a dedicated subfolder with a `SKILL.md` entry point when it needs supporting files.
+| Skill | Purpose | Status | Verification evidence |
+| --- | --- | --- | --- |
+| [`product-manager-thinking`](skills/shared/product-manager-thinking/SKILL.md) | Help engineers examine product context, outcomes, evidence, scope and trade-offs before implementation | Draft | Static review and six synthetic scenario walkthroughs completed 2026-09-21; not yet verified in a live engineering task |
+
+When adding a skill, record its name, relative link, purpose, status and verification evidence in this section. Use a dedicated subfolder with a `SKILL.md` entry point when it needs supporting files.
 
 ## Status definitions
 
@@ -77,7 +81,7 @@ No automatic synchronisation is configured. Private source systems retain their 
 ## Open decisions
 
 - Which software licence, if any, should apply?
-- Which first reusable skill is worth implementing and testing?
+- Which live engineering context should be used to test the first draft skill?
 - Is a lightweight automated validation check useful once runnable examples exist?
 
 The current outcome is the usable repository structure and its boundaries. Additional tooling is not required to begin.
