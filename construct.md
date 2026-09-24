@@ -31,9 +31,15 @@ Construct is public. Private notes, personal records and employer material belon
 | [skills/communication/](skills/communication/README.md) | Clear writing and communication methods |
 | [skills/shared/](skills/shared/README.md) | Methods useful across roles |
 | [agents/](agents/README.md) | Bounded agent instructions |
-| [docs/](docs/README.md) | Usage guidance and decisions |
+| [docs/](docs/README.md) | Usage guidance, learning plans and decisions |
 | [templates/](templates/README.md) | Reusable starting points |
 | [examples/](examples/README.md) | Synthetic, reproducible examples |
+
+## Knowledge-base index
+
+| Item | Purpose | Status | Verification evidence |
+| --- | --- | --- | --- |
+| [Autonomous Agent Development: One-Month Learning Plan](docs/autonomous-agents/README.md) | Guide one month of learning and practical preparation through a bounded agent capstone | Draft | Structure and references reviewed 2026-09-24; not yet completed or tested by a learner |
 
 ## Skill index
 
