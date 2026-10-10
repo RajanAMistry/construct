@@ -1,0 +1,201 @@
+# Generated from hooks/outbound.json by scripts/build-adapters.mjs. Edit the source, then run it again.
+# Prime directive 1: anything that pushes or posts prompts before running outside the sandbox.
+# Rules are experimental in Codex; the raw API mutation patterns live in the hook instead.
+
+prefix_rule(
+    pattern = ["git", "push"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["gh", "pr", "create"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["gh", "pr", "comment"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["gh", "pr", "edit"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["gh", "pr", "close"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["gh", "pr", "reopen"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["gh", "pr", "delete"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["gh", "pr", "merge"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["gh", "pr", "review"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["gh", "issue", "create"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["gh", "issue", "comment"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["gh", "issue", "edit"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["gh", "issue", "close"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["gh", "issue", "reopen"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["gh", "issue", "delete"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["gh", "release", "create"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["gh", "release", "edit"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["gh", "release", "delete"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["glab", "mr", "note"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["glab", "mr", "create"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["glab", "mr", "update"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["glab", "mr", "approve"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["glab", "mr", "revoke"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["glab", "mr", "merge"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["glab", "mr", "close"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["glab", "mr", "reopen"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["glab", "mr", "delete"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["glab", "issue", "note"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["glab", "issue", "create"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["glab", "issue", "update"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["glab", "issue", "close"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["glab", "issue", "reopen"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)
+
+prefix_rule(
+    pattern = ["glab", "issue", "delete"],
+    decision = "prompt",
+    justification = "construct: this pushes to or posts on a forge. Only run it if the current message asked for it.",
+)

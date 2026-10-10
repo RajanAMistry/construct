@@ -1,0 +1,13 @@
+{
+  "name": "construct",
+  "version": "0.1.0",
+  "description": "Employer-neutral skills, agents and a push/post guard for AI-assisted software work.",
+  "author": {
+    "name": "Rajan Mistry"
+  },
+  "keywords": [
+    "skills",
+    "agents",
+    "code-review"
+  ]
+}

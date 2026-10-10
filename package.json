@@ -1,0 +1,17 @@
+{
+  "name": "construct",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Employer-neutral skills, agents and a push/post guard for Claude Code, OpenCode, pi and Codex.",
+  "keywords": ["pi-package", "skills", "agents"],
+  "type": "module",
+  "author": { "name": "Rajan Mistry" },
+  "scripts": {
+    "build": "node scripts/build-adapters.mjs",
+    "check": "node scripts/build-adapters.mjs --check"
+  },
+  "pi": {
+    "skills": ["./adapters/pi/skills"],
+    "extensions": ["./adapters/pi/extensions/construct-guard.ts"]
+  }
+}

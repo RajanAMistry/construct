@@ -25,15 +25,16 @@ Construct is public. Private notes, personal records and employer material belon
 
 | Location | Contents |
 | --- | --- |
-| [skills/architect/](skills/architect/README.md) | Design and architecture methods |
+| [skills/shared/construct/](skills/shared/construct/SKILL.md) | The prime directives and crew, loaded first in a session |
 | [skills/developer/](skills/developer/README.md) | Implementation and verification methods |
-| [skills/researcher/](skills/researcher/README.md) | Research and evidence methods |
 | [skills/communication/](skills/communication/README.md) | Clear writing and communication methods |
 | [skills/shared/](skills/shared/README.md) | Methods useful across roles |
-| [agents/](agents/README.md) | Bounded agent instructions |
-| [docs/](docs/README.md) | Usage guidance, learning plans and decisions |
-| [templates/](templates/README.md) | Reusable starting points |
+| [agents/](agents/README.md) | The crew: bounded agent instructions |
+| [templates/](templates/README.md) | Reusable starting points for skills and agents |
 | [examples/](examples/README.md) | Synthetic, reproducible examples |
+| [hooks/](hooks/outbound.json) | The push/post guard pattern list and hook script |
+| [adapters/](docs/harness-adapters.md) | Generated harness adapters (never edited by hand) |
+| [docs/](docs/README.md) | Usage guidance and decisions |
 
 ## Knowledge-base index
 
