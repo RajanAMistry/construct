@@ -49,6 +49,7 @@ Record every skill here with its name, relative link, purpose, status and verifi
 | --- | --- | --- | --- |
 | [construct](skills/shared/construct/SKILL.md) | Prime directives and crew loaded at the start of a session | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
 | [learn-from-fixes](skills/shared/learn-from-fixes/SKILL.md) | Turn merged fixes into guidance gaps, and audit local rules against the docs | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
+| [til](skills/shared/til/SKILL.md) | Capture a learning note into the user's own folder, shaped for a future blog post | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
 
 ## Status definitions
 
