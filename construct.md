@@ -57,6 +57,17 @@ Record every skill here with its name, relative link, purpose, status and verifi
 | [code-review](skills/developer/code-review/SKILL.md) | Review one pull or merge request: quick and full passes, draft replies, never posts | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
 | [review-queue](skills/developer/review-queue/SKILL.md) | Token-lean loop over a whole review queue via a fetch-and-trim helper | Draft | Helper contract verified in examples/review-queue (pure-git run, 2026-10-10); forge flow not yet exercised |
 
+## Agent index
+
+Record every agent here with its name, relative link, purpose, status and verification evidence. The source format is the Claude Code agent format; adapters for other harnesses are generated, never edited by hand.
+
+| Agent | Purpose | Status | Evidence |
+| --- | --- | --- | --- |
+| [reviewer (Smith)](agents/reviewer.md) | Maintainer-grade review of a change; read-only, never posts | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
+| [planner (Architect)](agents/planner.md) | Break large work into small reviewable changes; plans and drafts only | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
+| [product-manager (Oracle)](agents/product-manager.md) | Release scope, cut list and capacity plan; verifies claims in code | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
+| [mentor (Morpheus)](agents/mentor.md) | Teaching an unfamiliar layer or testing strategy | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
+
 ## Status definitions
 
 | Status | Meaning |
