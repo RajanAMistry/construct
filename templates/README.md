@@ -3,6 +3,7 @@
 Reusable starting points.
 
 - [til-note.md](til-note.md): a "today I learned" note, shaped so it can become a blog post. Used by the [til](../skills/shared/til/SKILL.md) skill.
+- [feature-doc.md](feature-doc.md): a visual feature document skeleton. Used by the [feature-doc](../skills/developer/feature-doc/SKILL.md) skill.
 
 ## Index
 
