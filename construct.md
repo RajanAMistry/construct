@@ -52,6 +52,7 @@ Record every skill here with its name, relative link, purpose, status and verifi
 | [til](skills/shared/til/SKILL.md) | Capture a learning note into the user's own folder, shaped for a future blog post | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
 | [plain-voice](skills/communication/plain-voice/SKILL.md) | Teammate-to-teammate writing style for comments, reviews and updates | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
 | [feature-doc](skills/developer/feature-doc/SKILL.md) | Visual feature documentation: Mermaid maps, files, flags, tests, follow-ups | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
+| [pre-push-review](skills/developer/pre-push-review/SKILL.md) | Branch self-review, split check, description and commit message drafts | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
 
 ## Status definitions
 
