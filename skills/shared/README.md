@@ -2,8 +2,6 @@
 
 Methods useful across roles.
 
-## Items
-
-- [`product-manager-thinking`](product-manager-thinking/SKILL.md) — product-oriented reasoning for engineers working on technical tasks and decisions. Status: Draft.
+- [construct/](construct/SKILL.md): prime directives and crew for a session, loaded first.
 
 Add only material that meets the [repository boundaries](../../construct.md). Record its purpose, status and verification evidence in the root index.

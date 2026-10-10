@@ -43,11 +43,11 @@ Construct is public. Private notes, personal records and employer material belon
 
 ## Skill index
 
-| Skill | Purpose | Status | Verification evidence |
-| --- | --- | --- | --- |
-| [`product-manager-thinking`](skills/shared/product-manager-thinking/SKILL.md) | Help engineers examine product context, outcomes, evidence, scope and trade-offs before implementation | Draft | Static review and six synthetic scenario walkthroughs completed 2026-09-21; not yet verified in a live engineering task |
+Record every skill here with its name, relative link, purpose, status and verification evidence. A skill lives in a dedicated subfolder of its category with a `SKILL.md` entry point.
 
-When adding a skill, record its name, relative link, purpose, status and verification evidence in this section. Use a dedicated subfolder with a `SKILL.md` entry point when it needs supporting files.
+| Skill | Purpose | Status | Evidence |
+| --- | --- | --- | --- |
+| [construct](skills/shared/construct/SKILL.md) | Prime directives and crew loaded at the start of a session | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
 
 ## Status definitions
 
@@ -87,7 +87,7 @@ No automatic synchronisation is configured. Private source systems retain their 
 ## Open decisions
 
 - Which software licence, if any, should apply?
-- Which live engineering context should be used to test the first draft skill?
 - Is a lightweight automated validation check useful once runnable examples exist?
+- Should the implementer crew (Trinity, Neo, Tank) be generalized once the four current agents prove useful?
 
 The current outcome is the usable repository structure and its boundaries. Additional tooling is not required to begin.
