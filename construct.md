@@ -53,6 +53,8 @@ Record every skill here with its name, relative link, purpose, status and verifi
 | [plain-voice](skills/communication/plain-voice/SKILL.md) | Teammate-to-teammate writing style for comments, reviews and updates | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
 | [feature-doc](skills/developer/feature-doc/SKILL.md) | Visual feature documentation: Mermaid maps, files, flags, tests, follow-ups | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
 | [pre-push-review](skills/developer/pre-push-review/SKILL.md) | Branch self-review, split check, description and commit message drafts | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
+| [code-review](skills/developer/code-review/SKILL.md) | Review one pull or merge request: quick and full passes, draft replies, never posts | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
+| [review-queue](skills/developer/review-queue/SKILL.md) | Token-lean loop over a whole review queue via a fetch-and-trim helper | Draft | Helper contract verified in examples/review-queue (pure-git run, 2026-10-10); forge flow not yet exercised |
 
 ## Status definitions
 
