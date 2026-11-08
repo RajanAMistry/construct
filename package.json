@@ -8,7 +8,9 @@
   "author": { "name": "Rajan Mistry" },
   "scripts": {
     "build": "node scripts/build-adapters.mjs",
-    "check": "node scripts/build-adapters.mjs --check"
+    "check": "node scripts/build-adapters.mjs --check",
+    "setup": "node scripts/setup.mjs",
+    "test:setup": "node --test test/setup.test.mjs"
   },
   "pi": {
     "skills": ["./adapters/pi/skills"],

@@ -8,3 +8,6 @@ Desktop.ini
 *.key
 credentials.json
 token.json
+
+# Local setup choices, snapshots and potentially sensitive overwrite backups
+.construct-setup/

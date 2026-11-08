@@ -22,7 +22,7 @@ Skills describe **how to work**, agents define **who owns a bounded responsibili
 ## Getting started
 
 1. Read [construct.md](construct.md) for scope, indexes and status definitions, and [AGENTS.md](AGENTS.md) before making changes.
-2. Follow the [installation guide](docs/harness-adapters.md#installing-each-harness) for your chosen harness. Configure only the adapters and tools you need.
+2. Run `npm run setup` for [guided terminal setup](docs/guided-setup.md): select harnesses and targets, review a snapshot plan, then approve installation and backed-up overwrites. The [manual installation guide](docs/harness-adapters.md#installing-each-harness) remains available.
 3. Load the [construct skill](skills/shared/construct/SKILL.md), then select the skills and specialist roles needed for one bounded task.
 4. Follow [tool preflight](docs/tool-preflight.md) before external-service access: check the tool, inspect any existing connection, identify its target and authentication source, and ask for the method when missing or unclear. Never request secret values in chat.
 5. Try the [synthetic review-queue walkthrough](examples/review-queue/README.md) in a disposable repository, or choose a workflow from [task.md](task.md). Offline checks leave live connection validity unverified.
@@ -35,7 +35,7 @@ Review complete workflows through their inputs, participating agents, skills, to
 
 For each output, ask: **Is this enough? What should we add, remove or simplify?** Use the answer to refine the relevant instructions. The [backlog](task.md) includes both agent-led and skill-led reviews, plus a planned comparison with Everything Claude Code after confirming its source and version.
 
-Squad orchestration, direct peer messaging and shared state depend on harness capabilities. The backlog tracks their verification and coordinator-mediated alternatives; end-to-end behavior across all four harnesses remains unverified. Guided setup, `doctor`, private local configuration and a general `validate` command are planned work.
+Squad orchestration, direct peer messaging and shared state depend on harness capabilities. The backlog tracks their verification and coordinator-mediated alternatives; end-to-end behavior across all four harnesses remains unverified. Guided snapshot setup is available with offline filesystem checks; live harness activation remains unverified. `doctor`, private local configuration and a general `validate` command are planned work.
 
 ## Checks and maintenance
 
