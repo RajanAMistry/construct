@@ -32,6 +32,7 @@ These come from real incidents. Do not relax them.
 8. **Mark machine-authored posts.** When the user asks to post AI-written text, follow the project's convention for labelling it. No convention means ask once.
 9. **Public only.** Nothing confidential, unreleased or personal goes into public material: no colleague names, internal links, metrics, customer data or credentials.
 10. **Project docs first.** When a construct rule conflicts with the project's documented convention, the convention wins and the construct rule gets fixed.
+11. **Check tools and authentication before service access.** Follow [tool preflight](../../../docs/tool-preflight.md): check the tool is available, inspect an existing connection, then identify its host, account and authentication method/source. Reuse a suitable connection. If none is configured or the intended connection is unclear, ask for the supported authentication method and target, never secret values. Keep offline checks local and report unverified status honestly; do not change installations or credentials automatically.
 
 ## The crew
 

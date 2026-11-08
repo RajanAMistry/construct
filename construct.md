@@ -35,12 +35,14 @@ Construct is public. Private notes, personal records and employer material belon
 | [hooks/](hooks/outbound.json) | The push/post guard pattern list and hook script |
 | [adapters/](docs/harness-adapters.md) | Generated harness adapters (never edited by hand) |
 | [docs/](docs/README.md) | Usage guidance and decisions |
+| [task.md](task.md) | Setup and squad refinement backlog organized around workflow outputs and handoffs |
 
 ## Knowledge-base index
 
 | Item | Purpose | Status | Verification evidence |
 | --- | --- | --- | --- |
 | [Autonomous Agent Development: One-Month Learning Plan](docs/autonomous-agents/README.md) | Guide one month of learning and practical preparation through a bounded agent capstone | Draft | Structure and references reviewed 2026-09-24; not yet completed or tested by a learner |
+| [Tool and authentication preflight](docs/tool-preflight.md) | Check tool availability, existing connections, target identity and authentication methods before service access | Draft | Instructions and synthetic acceptance scenarios reviewed 2026-11-08; no live authentication flow tested |
 
 ## Skill index
 

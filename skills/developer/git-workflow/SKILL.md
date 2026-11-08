@@ -26,6 +26,8 @@ Read relevant diffs, including staged and untracked files, before editing or sta
 
 Before integrating remote work, confirm the remote and fetch the specific branch when network access is allowed. Inspect ahead/behind commits and divergence; fetch updates remote-tracking refs, not the working branch. Choose an explicit integration method instead of a blind `git pull`.
 
+Before remote Git or forge CLI access, follow [tool preflight](../../../docs/tool-preflight.md): check availability, existing authentication and the intended host/account. Git transport authentication and forge API authentication are separate. Reuse the suitable existing method; if it is missing or unclear, ask for the method and target without requesting secrets. Offline inspection does not authorize a network authentication check.
+
 ## 2. Branches and work preservation
 
 1. Follow project naming and branching conventions. Confirm the starting revision before creating or switching a branch. Use an agreed worktree for isolated work where useful; never remove or force-switch an occupied worktree.

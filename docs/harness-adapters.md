@@ -48,6 +48,8 @@ hooks/
 
 ## Installing each harness
 
+Before using external-service tools in any harness, follow [tool preflight](tool-preflight.md). Check the tool, reuse an existing connection for the correct host/account, and ask for the authentication method when none is configured or the selection is unclear. Offline checks do not establish live authentication validity.
+
 ### Claude Code
 
 ```bash

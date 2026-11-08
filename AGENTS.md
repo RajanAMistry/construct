@@ -12,4 +12,6 @@ Follow the work-to-GitHub synchronisation rules in construct.md. Verify the targ
 
 Use [git-workflow](skills/developer/git-workflow/SKILL.md) for Git inspection, staging, commits, branching, conflict resolution and recovery. It does not authorize commits or publication, relax read-only assignments or override this repository's no-force-push rule.
 
+Before accessing an external service, follow [tool preflight](docs/tool-preflight.md): check the tool exists, inspect an existing connection and identify its target and authentication method. If no suitable connection is configured, or its identity is unclear, ask for the supported method and target without requesting secret values. Keep offline checks local and do not change credentials or installations automatically.
+
 Do not add or choose a software licence without an explicit decision. Record skill status from evidence; placeholders are not tested skills. Preserve these boundaries in future changes.
