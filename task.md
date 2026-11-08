@@ -1,3 +1,19 @@
+# Task execution prompt
+
+```text
+Work on the Construct repository:
+
+1. Pull the latest changes safely, preserving existing local work.
+2. Read the project instructions and task.md. Show me the first unchecked task in file order.
+3. Inspect the project before proposing changes. Explain what already exists, what is missing, and what needs a decision.
+4. Wait for my input, then research relevant approaches and ask focused questions, one at a time, to agree how we should build it.
+5. Implement the agreed scope and verify the outcome.
+6. Update relevant documentation and mark the task complete in task.md only when its acceptance criteria pass. Otherwise record the remaining work.
+7. Review the changes for secrets and private information, commit, push to the verified remote branch, and confirm the remote commit.
+
+Handle only this task. Do not begin the next task automatically.
+```
+
 # Setup and squad refinement tasks
 
 This is a planned backlog, not evidence that the workflows or cross-agent communication already work in every harness. Start with setup, then review complete workflows using synthetic scenarios. Use Everything Claude Code as an orchestration reference after confirming the source and version; adapt only what serves Construct's needs.
