@@ -2,18 +2,64 @@
 
 > "This is the Construct. It's our loading program."
 
-A small collection of employer-neutral, reusable skills, agent guidance and working methods for AI-assisted software work. Portable across Claude Code, OpenCode, pi and Codex.
+A collection of employer-neutral skills, specialist agent instructions and working methods for AI-assisted software work, with generated adapters for Claude Code, OpenCode, pi and Codex.
 
-Start with [construct.md](construct.md) for scope, indexes, status definitions and contribution rules. Read [AGENTS.md](AGENTS.md) before making changes.
+Construct helps an agent choose a procedure, use the permitted tools and hand useful evidence to the next role. It covers product discovery through implementation, review, release planning, documentation and learning. The host harness provides execution, tool access and agent communication; those capabilities vary by harness.
 
 ## What is here
 
-- **Skills** in [skills/](skills/), by category: the [construct](skills/shared/construct/SKILL.md) core (prime directives and crew), review workflows ([code-review](skills/developer/code-review/SKILL.md), [review-queue](skills/developer/review-queue/SKILL.md), [pre-push-review](skills/developer/pre-push-review/SKILL.md)), documentation and learning methods ([feature-doc](skills/developer/feature-doc/SKILL.md), [learn-from-fixes](skills/shared/learn-from-fixes/SKILL.md), [til](skills/shared/til/SKILL.md), [weekly-digest](skills/shared/weekly-digest/SKILL.md)), and a writing style ([plain-voice](skills/communication/plain-voice/SKILL.md)).
-- **The crew** in [agents/](agents/): bounded roles for product strategy, business viability, requirements, delivery, design, architecture, implementation, AI, security, QA, review, release/operations, documentation and marketing, plus a mentor. Most advise read-only; the engineer and writer can make assigned local changes. None posts or pushes by default; the construct guard asks first where the harness supports it.
-- **Templates** in [templates/](templates/) and a runnable synthetic example in [examples/](examples/).
+| Item | Purpose |
+| --- | --- |
+| [16 skills](construct.md#skill-index) | Reusable procedures for product and technical decisions, Git, review, documentation, learning and clear writing |
+| [16 agents](agents/README.md) | Bounded specialist roles, including delivery coordination, implementation, independent QA and review |
+| [Harness adapters](docs/harness-adapters.md) | Generated skills, agent profiles, commands and guard configuration for the four supported harnesses |
+| [Tool and authentication preflight](docs/tool-preflight.md) | Check availability, existing connections, the target host/account and the authentication method before service access |
+| [Templates](templates/README.md) and [examples](examples/README.md) | Document starting points and a runnable synthetic review-queue helper |
+| [Refinement backlog](task.md) | 26 tasks covering initial setup, squad coordination and complete workflow reviews |
 
-Everything is recorded with an honest status in the [skill index](construct.md#skill-index) and [agent index](construct.md#agent-index). Most items are Draft: rewritten from working practice, not yet verified in a documented example here.
+Skills describe **how to work**, agents define **who owns a bounded responsibility**, and tools perform **specific actions**. Tool availability and authentication come from the harness and local environment; installing the instructions does not install every external CLI or connect an account.
 
-For Git operations and history inspection, use [git-workflow](skills/developer/git-workflow/SKILL.md). It covers safe commits, branches, rebases, conflicts and recovery; [pre-push-review](skills/developer/pre-push-review/SKILL.md) handles branch readiness and description drafts.
+## Getting started
+
+1. Read [construct.md](construct.md) for scope, indexes and status definitions, and [AGENTS.md](AGENTS.md) before making changes.
+2. Follow the [installation guide](docs/harness-adapters.md#installing-each-harness) for your chosen harness. Configure only the adapters and tools you need.
+3. Load the [construct skill](skills/shared/construct/SKILL.md), then select the skills and specialist roles needed for one bounded task.
+4. Follow [tool preflight](docs/tool-preflight.md) before external-service access: check the tool, inspect any existing connection, identify its target and authentication source, and ask for the method when missing or unclear. Never request secret values in chat.
+5. Try the [synthetic review-queue walkthrough](examples/review-queue/README.md) in a disposable repository, or choose a workflow from [task.md](task.md). Offline checks leave live connection validity unverified.
+
+The queue walkthrough needs Bash and Git. Adapter generation/checking needs Node.js and npm; the shell push/post guard needs `jq`. External-service workflows need their corresponding CLI or connector and suitable authentication.
+
+## Working as a squad
+
+Review complete workflows through their inputs, participating agents, skills, tools, handoffs and observable outputs. For example, product-manager defines acceptance criteria, planner breaks the work into small changes, software-engineer implements an assigned change, and reviewer and qa-verifier provide findings and acceptance evidence. Delivery-lead coordinates ownership and dependencies where needed.
+
+For each output, ask: **Is this enough? What should we add, remove or simplify?** Use the answer to refine the relevant instructions. The [backlog](task.md) includes both agent-led and skill-led reviews, plus a planned comparison with Everything Claude Code after confirming its source and version.
+
+Squad orchestration, direct peer messaging and shared state depend on harness capabilities. The backlog tracks their verification and coordinator-mediated alternatives; end-to-end behavior across all four harnesses remains unverified. Guided setup, `doctor`, private local configuration and a general `validate` command are planned work.
+
+## Checks and maintenance
+
+From the repository root:
+
+```sh
+npm run check
+```
+
+This checks whether generated adapters and links match the canonical sources. After changing skill, agent or guard sources, regenerate and check them:
+
+```sh
+npm run build
+npm run check
+```
+
+Edit canonical sources under `skills/`, `agents/` and `hooks/`; adapters are generated. A passing adapter check establishes structural consistency. Workflow effectiveness, command contracts and authentication behavior need their own evidence; the broader offline validation suite is planned in [task.md](task.md).
+
+## Status and boundaries
+
+All 16 skills and 16 agent profiles are currently **Draft**. The [skill index](construct.md#skill-index) and [agent index](construct.md#agent-index) record the available evidence and limits. The review-queue helper has a documented synthetic local example; live forge behavior and full harness parity have not been established.
+
+Most agents advise read-only. Software-engineer and technical-writer can make assigned local changes; planner can write requested plans. Posting, pushing, spending and deployment require explicit authorization. The guard covers known push/post patterns and prompts or blocks according to the harness; it does not replace the working rules.
+
+Keep credentials, personal notes and employer-confidential material outside this public repository. There is no automatic synchronization with private knowledge systems. Use [git-workflow](skills/developer/git-workflow/SKILL.md) for Git operations and [pre-push-review](skills/developer/pre-push-review/SKILL.md) for branch readiness and description drafts.
 
 No software licence has been selected. Public visibility does not grant an open-source licence.
