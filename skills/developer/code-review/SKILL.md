@@ -9,6 +9,8 @@ allowed-tools: Read, Grep, Glob, Agent, Bash(git:*), Bash(gh pr view:*), Bash(gh
 
 Target: the pull or merge request the user named, or `local` for the working branch against its base. If neither is given, ask.
 
+Load [git-workflow](../git-workflow/SKILL.md) before Git inspection or checkout. Keep quick passes read-only; a full pass must agree any branch/worktree changes without disturbing existing work. Review permission does not authorize rebasing, committing or pushing.
+
 ## Fetch
 
 With the forge CLI the project uses. GitHub example, GitLab in comments:
@@ -29,11 +31,13 @@ For `local`: `git diff <base>...HEAD` plus `git log`, with the branch's own comm
 Hand the material to the `reviewer` agent (Smith) with the target, the pass type, and what you fetched. The agent owns the checklist and the output format. Do not repeat its checklist here.
 
 - **Quick pass**: structure, flags, tests present, obvious bugs, under 15 minutes. Say "full pass to follow". A quick pass beats silence: review turnaround is measured in days, not weeks.
-- **Full pass**: check the branch out, run the touched tests, trace parent and child, verify every bot claim against source.
+- **Full pass**: agree on a safe checkout or isolated workspace before switching branches; preserve existing work. Read whole changed files and follow consumers of changed exports, events, queries and contracts. Run relevant tests, trace parent and child, and verify bot claims against source.
 
 Points a bot or another reviewer already raised in a thread are not repeated. The reviewer lists each one as a single status line (addressed, still open, or wrong with the reason), with no diff and no draft reply.
 
 Return the reviewer's output as is, spacing included. Say plainly what was verified: `read the diff only`, `ran the tests`, or `checked the UI`.
+
+Link each acceptance criterion to observed behavior or mark it unverified. Record the revision, environment and checks actually run; distinguish a failed check from one not run. For a regression test, confirm it fails without the fix where this can be done safely, following `pre-push-review`. State self-review limitations and seek an independent reviewer for critical changes. A review verdict is not permission to approve or merge remotely.
 
 ## Posting (only when the current message says so)
 

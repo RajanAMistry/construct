@@ -4,6 +4,8 @@ A synthetic, runnable implementation of the helper contract in the [review-queue
 
 Purpose: show the shape of the four commands (`list`, `brief`, `apply`, `restore`) and the four cache files (`meta.md`, `notes.md`, `diff.patch`, `files.txt`), including the stash-safe apply and restore. Copy `queue.sh`, keep the contract, and replace the git calls with your forge CLI (`gh api graphql`, `glab api graphql`) to drive a real queue.
 
+Read [git-workflow](../../skills/developer/git-workflow/SKILL.md) before using this against existing work. Run the walkthrough only in a disposable synthetic repository. This example records a stash message rather than its object ID and is not a general recovery tool; inspect state and stop on ambiguity or work added during review. Stashing an existing working tree needs agreement first.
+
 ## Try it
 
 ```sh

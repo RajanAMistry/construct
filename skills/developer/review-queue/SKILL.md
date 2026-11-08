@@ -8,6 +8,8 @@ allowed-tools: Read, Grep, Glob, Agent, Bash(git:*), Bash(jq:*)
 
 A token-lean loop over many changes. For one change with full diffs and draft replies, use the `code-review` skill instead.
 
+Load [git-workflow](../git-workflow/SKILL.md) for Git inspection, branch changes and preservation/restoration. Before `apply`, agree any stashing with the user and verify the helper's bookkeeping. The synthetic helper identifies stashes by message, not exact object ID; inspect the recorded context and stop on ambiguous matches or newly changed work. Never force restoration to advance the queue.
+
 The pattern: a helper script does the fetching and trimming, so the model reads a few small files per item instead of raw API output, and each item is reviewed in a throwaway agent context that returns only one-liners. The cost of a queue run stays flat per item instead of growing with the session.
 
 ## The helper contract

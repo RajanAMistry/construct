@@ -9,6 +9,8 @@ allowed-tools: Read, Grep, Glob, Edit, Write, Bash(git:*), Bash(gh pr view:*), B
 
 Base branch: what the user named, else the repository default (`main` or `master`). Load the `plain-voice` skill and the project's own conventions (its `AGENTS.md`, contributing guide, documented checklists) before starting.
 
+Load [git-workflow](../git-workflow/SKILL.md) for repository inspection, staging, commits and any history changes. This workflow drafts by default; checking readiness does not authorize a commit, squash or push. Include staged and unstaged work separately when reviewing work not yet committed.
+
 ## 1. Look at the whole branch
 
 ```sh
@@ -28,13 +30,19 @@ More than about ten files or two concerns: propose the split and stop until the 
 4. Derived files: when the project has generators or fix hooks (locale catalogs, generated schemas, snapshots, lockfile checks), run them now, not in CI.
 5. Run the touched tests and the linter on touched files. Report pass or fail with output.
 
+Inspect assertions for false confidence: a missing matcher, a callback that may never execute, a negative selector check with no positive control, or a mock asserting only its own configured return. An expected value imported from the implementation can repeat the same mistake. Replace these with observable behavior and appropriate async completion checks.
+
+For a bug fix, show that the regression test fails with only the fix removed and passes with it restored. Use an isolated workspace or an exact reversible edit that preserves the user's work. Never reset, stash or overwrite unrelated changes to create this proof. If unsafe or unavailable, mark the proof not run and explain why.
+
+Optional targeted mutation check: with authorization to edit the test workspace, temporarily flip a condition or omit an effect and confirm the relevant test fails. Restore only that edit, inspect the resulting diff, and rerun the test. Stop on unexpected differences. This strengthens evidence; it does not prove complete coverage.
+
 ## 3. Description
 
 Use the project's pull request template when it has one. Otherwise use [pr-description.md](../../../templates/pr-description.md), in the `plain-voice` style. Leave screenshot cells as placeholders. Never describe screenshots you did not take.
 
 ## 4. Commit message
 
-Imperative subject under 72 characters. Body says why, one paragraph. Project trailers (changelog, ticket references) follow the documented convention. Squash fixup noise or say why it stays.
+Follow the project's message convention; otherwise use an imperative subject under 72 characters and a body explaining why when useful. Project trailers (changelog, ticket references) follow the documented convention. Suggest squashing fixup noise if useful, but do not rewrite history without explicit authorization under `git-workflow`.
 
 ## 5. Labels and reviewers (suggest, the user applies)
 

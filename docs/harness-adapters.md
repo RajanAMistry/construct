@@ -13,6 +13,8 @@ This library ships one canonical source for skills, agents and the push/post gua
 
 Run `node scripts/build-adapters.mjs` after any change to the sources. `node scripts/build-adapters.mjs --check` fails if any generated file is stale; use it in CI.
 
+The builder excludes `agents/README.md` and the supporting `agents/learning_checklist.md` from agent discovery. Other `agents/*.md` files must be profiles with frontmatter. Structural checks verify generated consistency, not that a role or workflow has been exercised successfully.
+
 ## Generated adapters
 
 ```

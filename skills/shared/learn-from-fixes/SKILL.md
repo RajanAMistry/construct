@@ -9,7 +9,10 @@ allowed-tools: Read, Grep, Glob, Write, Bash(git log:*), Bash(git show:*), Bash(
 
 Input: what the user named. Either a set of merged fixes (a work item, a label, a milestone, an explicit list of pull or merge requests) or `rules <path>` for the audit mode.
 
+Load [git-workflow](../../developer/git-workflow/SKILL.md) when reading local history or diffs. Use its inspection safeguards only; this workflow does not authorize checkout, staging, commits or history rewrites.
+
 Real fixes show where guidance is thin. A bug that reached review or production means the documented rules did not stop it. This skill turns each fix into evidence, maps the evidence to the guidance, and drafts the smallest change that would have prevented the next one.
+Do not assume every defect is a documentation gap. Check whether existing guidance was missing, unclear, not discoverable or simply not followed; keep uncertain causes labelled as hypotheses.
 
 Guidance means whatever the project treats as its source of truth: contributing docs, documented conventions, an `AGENTS.md` or `CLAUDE.md`, a docs folder. Ask the user which files count if it is not obvious. Local rules means a file of tagged house rules the docs do not cover yet, when the team keeps one.
 
@@ -33,6 +36,8 @@ Audit a local rules file against the project docs, the manual drift check.
 1. For every rule in the file, search the guidance for the same content.
 2. Verdict per rule: `now covered` (delete it from the local file, cite the doc line), `conflicts` (the doc wins, say what to change), or `still local`.
 3. For each `still local` rule confirmed twice in real reviews, draft the upstream docs change so it stops being local.
+
+Keep rule provenance: public evidence, rationale, owner and last audit date. Distinguish a temporary `baseline` from a deliberate `preference`; a preference is not a project-wide requirement. Propose removing redundant guidance once the canonical docs cover it, rather than maintaining two copies. Return audit diffs for approval, not automatic deletions.
 
 ## Rules
 

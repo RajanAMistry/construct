@@ -11,6 +11,8 @@ Feature: the one the user named. Template: [feature-doc.md](../../../templates/f
 
 ## Steps
 
+Load [git-workflow](../git-workflow/SKILL.md) for read-only revision and history inspection. Documentation work does not authorize checkout, commits or history changes in the source repository.
+
 1. **Entry point.** Find the route, the controller or page that mounts the UI, and the file that initialises it. Say how a request travels from URL to first render.
 2. **Component tree.** From the root component, follow imports two or three levels. Record data flowing down and events flowing up. Note shared UI components used.
 3. **Data.** List every query, mutation, subscription or API call the feature makes. For each, name the handler or endpoint on the other side and the model behind it. Note cache policies and optimistic updates.
@@ -27,3 +29,4 @@ Feature: the one the user named. Template: [feature-doc.md](../../../templates/f
 - Public sources only: file paths in the repository, public issues and pull requests, official docs. Nothing from private discussions.
 - Add a "Last verified against `<branch>` `<sha>` on `<date>`" line at the top.
 - Update the index of the folder the doc lives in.
+- Distinguish implemented behavior from a proposal. For a released-product document, verify against the named release, not an unrelated development branch. Record which walkthroughs were run, which paths were only inspected and what remains unverified; never imply the quickstart was tested when it was only read.

@@ -10,4 +10,6 @@ Scan all proposed files and staged diffs for secrets and private information. Re
 
 Follow the work-to-GitHub synchronisation rules in construct.md. Verify the target remote and branch, reconcile existing changes, inspect the commit and verify the remote after an authorised push. Do not overwrite history or configure automatic mirroring.
 
+Use [git-workflow](skills/developer/git-workflow/SKILL.md) for Git inspection, staging, commits, branching, conflict resolution and recovery. It does not authorize commits or publication, relax read-only assignments or override this repository's no-force-push rule.
+
 Do not add or choose a software licence without an explicit decision. Record skill status from evidence; placeholders are not tested skills. Preserve these boundaries in future changes.

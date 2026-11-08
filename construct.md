@@ -55,8 +55,17 @@ Record every skill here with its name, relative link, purpose, status and verifi
 | [plain-voice](skills/communication/plain-voice/SKILL.md) | Teammate-to-teammate writing style for comments, reviews and updates | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
 | [feature-doc](skills/developer/feature-doc/SKILL.md) | Visual feature documentation: Mermaid maps, files, flags, tests, follow-ups | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
 | [pre-push-review](skills/developer/pre-push-review/SKILL.md) | Branch self-review, split check, description and commit message drafts | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
+| [git-workflow](skills/developer/git-workflow/SKILL.md) | Git inspection, focused commits, branching, rebasing, conflict resolution, recovery and publication safeguards | Draft | Instructions and cross-references reviewed 2026-11-08; not yet verified end to end in a documented example |
 | [code-review](skills/developer/code-review/SKILL.md) | Review one pull or merge request: quick and full passes, draft replies, never posts | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
 | [review-queue](skills/developer/review-queue/SKILL.md) | Token-lean loop over a whole review queue via a fetch-and-trim helper | Draft | Helper contract verified in examples/review-queue (pure-git run, 2026-10-10); forge flow not yet exercised |
+| [product-manager-thinking](skills/shared/product-manager-thinking/SKILL.md) | Evidence-led product reasoning for engineering decisions | Draft | Existing instructions and synthetic examples inspected 2026-11-08; practical use not verified |
+| [product-discovery](skills/shared/product-discovery/SKILL.md) | Audience, alternatives, demand experiments and MVP boundaries | Draft | Independently written from generic role requirements 2026-11-08; no research sessions run |
+| [business-model](skills/shared/business-model/SKILL.md) | Synthetic pricing, cost scenarios, unit economics and commercial risks | Draft | Synthetic arithmetic checked 2026-11-08; no real business viability validated |
+| [ux-validation](skills/developer/ux-validation/SKILL.md) | User flows, interaction states and usability validation | Draft | Procedure reviewed 2026-11-08; no participant sessions or accessibility audit run |
+| [architecture-decision](skills/developer/architecture-decision/SKILL.md) | Compare technical options and record contracts and tradeoffs | Draft | Procedure reviewed 2026-11-08; no implemented architecture verified |
+| [ai-evaluation](skills/developer/ai-evaluation/SKILL.md) | Quality, safety, latency and cost evaluation against a baseline | Draft | Procedure reviewed 2026-11-08; no provider experiments run |
+
+The construct, code-review, pre-push-review, learn-from-fixes and feature-doc procedures were extended with employer-neutral evidence, authorization and verification guidance on 2026-11-08. Review and adapter checks do not establish practical skill effectiveness; their status remains Draft.
 
 ## Agent index
 
@@ -68,6 +77,20 @@ Record every agent here with its name, relative link, purpose, status and verifi
 | [planner (Architect)](agents/planner.md) | Break large work into small reviewable changes; plans and drafts only | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
 | [product-manager (Oracle)](agents/product-manager.md) | Release scope, cut list and capacity plan; verifies claims in code | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
 | [mentor (Morpheus)](agents/mentor.md) | Teaching an unfamiliar layer or testing strategy | Draft | Rewritten employer-neutral from working practice; not yet verified in a documented example |
+| [delivery-lead (Nexus)](agents/delivery-lead.md) | Coordinate the squad: assign work, size tasks, own the task register and handoffs, manage retries, budgets and escalation | Draft | Written from the research note's Delivery Coordinator / Orchestrator role; not yet verified in a documented example |
+| [qa-verifier (Sentinel)](agents/qa-verifier.md) | Independent verification: risk-based checks, acceptance evidence from requirements, exploratory verification, defect report | Draft | Written from the research note's QA Engineer role; not yet verified in a documented example |
+| [security-privacy (Warden)](agents/security-privacy.md) | Threat model, identity and access, secrets, encryption, data lifecycle, dependency/license and incident risk for product and agents | Draft | Written from the research note's Security and Privacy Owner role; not yet verified in a documented example |
+| [release-operations (Atlas)](agents/release-operations.md) | Deployment, rollback, backups and recovery, CI/CD, hosting, monitoring, alerts, incidents and runbooks | Draft | Written from the research note's DevOps/Release and Operations/Support roles; not yet verified in a documented example |
+| [product-strategist (Compass)](agents/product-strategist.md) | Product purpose, audience, discovery, demand and MVP boundaries | Draft | Role instructions reviewed 2026-11-08; no practical run |
+| [business-owner (Ledger)](agents/business-owner.md) | Pricing, synthetic economics, ownership and commercial risk recommendations | Draft | Role instructions reviewed 2026-11-08; no practical run |
+| [ux-designer (Prism)](agents/ux-designer.md) | Accessible user flows, prototype states and usability evidence | Draft | Role instructions reviewed 2026-11-08; no practical run |
+| [software-architect (Merovingian)](agents/software-architect.md) | Technical options, boundaries, contracts and architecture decisions | Draft | Role instructions reviewed 2026-11-08; no practical run |
+| [software-engineer (Trinity)](agents/software-engineer.md) | Bounded local implementation, integrity, failure handling and tests | Draft | Role instructions reviewed 2026-11-08; no practical run |
+| [ai-engineer (Sparks)](agents/ai-engineer.md) | AI necessity, evaluation, context, cost and safety | Draft | Role instructions reviewed 2026-11-08; no provider experiments run |
+| [technical-writer (Mouse)](agents/technical-writer.md) | Release-accurate onboarding, usage, API and recovery documentation | Draft | Role instructions reviewed 2026-11-08; no product walkthrough run |
+| [marketing-sales (Switch)](agents/marketing-sales.md) | Positioning, acquisition experiments, launch drafts and adoption measures | Draft | Role instructions reviewed 2026-11-08; no campaigns run |
+
+Existing product-manager, delivery-lead, security-privacy, qa-verifier, reviewer and release-operations instructions were extended against the generic role requirements on 2026-11-08. The combined release-operations role covers both release engineering and ongoing operations/support; these updates do not constitute practical verification.
 
 ## Status definitions
 
@@ -94,6 +117,8 @@ No software licence is selected. Record the choice below before adding a licence
 
 ## Work-to-GitHub synchronisation rules
 
+Use [git-workflow](skills/developer/git-workflow/SKILL.md) for the reusable procedure. The repository-specific rules below remain mandatory, including the prohibition on force-pushing.
+
 1. GitHub is the shared published record for Construct. Local or AI-assisted drafts remain drafts until reviewed and committed.
 2. Confirm the remote owner, repository and branch. Fetch and inspect remote changes before editing; reconcile conflicts deliberately.
 3. Bring across only independently written, reviewed, employer-neutral content. Never mirror private folders, workspaces, logs or employer repositories.
@@ -108,6 +133,6 @@ No automatic synchronisation is configured. Private source systems retain their 
 
 - Which software licence, if any, should apply?
 - Is a lightweight automated validation check useful once runnable examples exist?
-- Should the implementer crew (Trinity, Neo, Tank) be generalized once the four current agents prove useful?
+- Are separate frontend/backend or release/support specializations useful after the general roles have practical evidence? The current general implementer is software-engineer (Trinity); no additional implementer trio is implied.
 
 The current outcome is the usable repository structure and its boundaries. Additional tooling is not required to begin.

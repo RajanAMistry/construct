@@ -6,5 +6,8 @@ Methods useful across roles.
 - [learn-from-fixes/](learn-from-fixes/SKILL.md): turn merged fixes into guidance gaps; audit local rules.
 - [til/](til/SKILL.md): capture a learning note for later blogging, into the user's own folder.
 - [weekly-digest/](weekly-digest/SKILL.md): config-driven weekly digest, one line per item with a link.
+- [product-manager-thinking/](product-manager-thinking/SKILL.md): evidence-led product reasoning for engineering decisions.
+- [product-discovery/](product-discovery/SKILL.md): audience, alternatives, demand experiments and MVP boundaries.
+- [business-model/](business-model/SKILL.md): synthetic commercial scenarios, pricing hypotheses and viability risks.
 
 Add only material that meets the [repository boundaries](../../construct.md). Record its purpose, status and verification evidence in the root index.

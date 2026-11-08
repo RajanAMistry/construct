@@ -63,7 +63,9 @@ for (const cat of readdirSync(join(ROOT, "skills")).sort()) {
     if (existsSync(join(catDir, name, "SKILL.md"))) skills.push({ name, path: `skills/${cat}/${name}` });
   }
 }
-const agentFiles = readdirSync(join(ROOT, "agents")).filter((f) => f.endsWith(".md") && f !== "README.md").sort();
+// Supporting Markdown documents are not agent profiles.
+const agentDocs = new Set(["README.md", "learning_checklist.md"]);
+const agentFiles = readdirSync(join(ROOT, "agents")).filter((f) => f.endsWith(".md") && !agentDocs.has(f)).sort();
 
 const out = new Map();   // path -> text content
 const links = new Map(); // path -> relative symlink target
