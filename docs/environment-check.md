@@ -85,7 +85,7 @@ When authentication is absent or unclear, ask for the first unresolved choice, f
 
 ## Privacy and retention
 
-The working report is private and returned to the user; do not save it automatically. If the user explicitly chooses to save it, use their private destination. This specification does not choose a new configuration store. Show actual host/account/path details privately only when needed to select or diagnose the connection. Use stable aliases in shareable summaries, and publish only independently written synthetic examples in Construct. Sanitizing names alone does not make real diagnostic context public-safe.
+The working report is private and returned to the user; do not save it automatically. If the user explicitly chooses to save it, use their private destination. Use [project-private configuration](private-configuration.md) for remembered target preferences; diagnostic reports are separate and are not saved there automatically. Show actual host/account/path details privately only when needed to select or diagnose the connection. Use stable aliases in shareable summaries, and publish only independently written synthetic examples in Construct. Sanitizing names alone does not make real diagnostic context public-safe.
 
 Exclude token values (including masked fragments), passwords, key material, credential-file contents, private URLs, internal architecture, real account names, raw stdout/stderr and environment dumps from public files, logs, fixtures and commit metadata. Environment credential names and fictional source references are sufficient. If unexpected output contains sensitive material, withhold it and report only the check ID and problem type. Never attach the raw output as evidence.
 

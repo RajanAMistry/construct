@@ -51,6 +51,8 @@ For manual recovery, stop the relevant harness and read that mapping locally. Pr
 
 On an apply error, setup attempts to remove its newly written entries and restore all originals changed by this run. If restoration fails, it reports the affected paths and backup locations; keep those backups for manual recovery. A forced process kill or power loss can interrupt that recovery, so apply is not a filesystem-wide atomic transaction. A recovery mapping is written before the first overwrite. In an interrupted run, some mapped entries may not have been processed: check whether each backup actually exists before restoring it. Do not run competing setup processes against the same targets.
 
+For project-specific hosts, account references, paths and remembered common preferences, use the separate [private configuration example](private-configuration.md). Setup does not collect or consume it; reruns preserve it.
+
 ## T01 responsibilities and evidence
 
 Delivery-lead owns the intake, agreed acceptance criteria, plan review and handoff. Software-engineer owns plan construction, conflict checks, backup/apply and verification. Technical-writer owns the walkthrough, destinations, recovery guidance and accurate limitations. The executable carries the repeatable mechanics; it does not launch these agents or claim their participation in a live squad run.

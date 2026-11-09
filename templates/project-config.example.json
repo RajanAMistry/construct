@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "paths": {
+    "project": ".",
+    "repositories": ["."],
+    "workingFolders": ["./docs"]
+  },
+  "services": [
+    {
+      "id": "example-forge",
+      "host": "forge.example.com",
+      "accountReference": "example-account",
+      "authentication": {
+        "method": "environment",
+        "sourceReference": "EXAMPLE_FORGE_TOKEN"
+      }
+    }
+  ],
+  "commonPreferences": {
+    "git": {
+      "identity": {
+        "choice": "ask",
+        "name": null,
+        "email": null
+      },
+      "authentication": {
+        "choice": "ask",
+        "method": null,
+        "sourceReference": null
+      }
+    }
+  }
+}

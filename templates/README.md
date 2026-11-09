@@ -9,6 +9,8 @@ Reusable starting points.
 - [issue-description.md](issue-description.md): an issue description skeleton. Used by the [planner](../agents/planner.md) agent.
 - [doctor-report.md](doctor-report.md): a private environment report skeleton with live sign-in-only and offline examples, following the [environment check specification](../docs/environment-check.md).
 
+- [project-config.example.json](project-config.example.json): synthetic project-private configuration starter; copy and use it under the [private configuration guidance](../docs/private-configuration.md).
+
 ## Index
 
 - [Learning Note](learning-note.md) — capture a practical question, evidence, application, test and decision.

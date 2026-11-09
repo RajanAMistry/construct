@@ -45,6 +45,7 @@ Construct is public. Private notes, personal records and employer material belon
 | [Tool and authentication preflight](docs/tool-preflight.md) | Check tool availability, existing connections, target identity and authentication methods before service access | Draft | Instructions and synthetic acceptance scenarios reviewed 2026-11-08; no live authentication flow tested |
 | [Guided terminal setup](docs/guided-setup.md) | Select harnesses and targets, review and apply local snapshots with overwrite backups | Draft | Synthetic filesystem acceptance checks; live harness activation unverified |
 | [Environment check report](docs/environment-check.md) | Specify doctor reporting for tools, adapters, permissions and live sign-in with an offline fallback | Draft | Report contract and synthetic scenario review; no executable collector or live sign-in test |
+| [Project-private configuration](docs/private-configuration.md) | Keep project targets and remembered common preferences local, using credential references only | Draft | Synthetic JSON, ignore and setup-preservation checks; no executable loader or live sign-in |
 
 ## Skill index
 

@@ -35,7 +35,7 @@ Review complete workflows through their inputs, participating agents, skills, to
 
 For each output, ask: **Is this enough? What should we add, remove or simplify?** Use the answer to refine the relevant instructions. The [backlog](task.md) includes both agent-led and skill-led reviews, plus a planned comparison with Everything Claude Code after confirming its source and version.
 
-Squad orchestration, direct peer messaging and shared state depend on harness capabilities. The backlog tracks their verification and coordinator-mediated alternatives; end-to-end behavior across all four harnesses remains unverified. Guided snapshot setup is available with offline filesystem checks; live harness activation remains unverified. `doctor`, private local configuration and a general `validate` command are planned work.
+Squad orchestration, direct peer messaging and shared state depend on harness capabilities. The backlog tracks their verification and coordinator-mediated alternatives; end-to-end behavior across all four harnesses remains unverified. Guided snapshot setup is available with offline filesystem checks; live harness activation remains unverified. The doctor report specification and [project-private configuration example](docs/private-configuration.md) are available. An executable `doctor`, configuration loader and general `validate` command remain planned work.
 
 ## Checks and maintenance
 

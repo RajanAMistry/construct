@@ -4,6 +4,8 @@ Status: Draft. Instructions and synthetic scenarios reviewed; no live connection
 
 Before using a tool that accesses an external service, check availability, existing authentication and the intended target, in that order. Reuse a suitable existing connection. Authentication establishes identity; it does not authorize additional actions.
 
+For remembered project targets and user-selected common preferences, follow [project-private configuration](private-configuration.md). Reuse settled choices, ask only about unresolved choices or observed conflicts, and keep native credential precedence authoritative.
+
 ## Procedure
 
 1. **Check the tool.** Inspect the harness's available tools or check the executable with `command -v gh` or `command -v glab`. For a CLI, inspect its version and local `--help` before choosing commands or flags. If it is missing, report that and ask whether to use an available alternative or provide installation steps. Do not install globally or change an existing installation automatically.
