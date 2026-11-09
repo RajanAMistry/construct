@@ -18,6 +18,8 @@ For an offline assignment or synthetic test, inspect metadata, local help and re
 
 For an assignment that includes online service access, a documented read-only status check may establish the current connection. For example, `gh auth status --hostname <host>` and `glab auth status --hostname <host>` are status-command candidates; confirm the installed version's help first. These commands may contact the service. Never add token-display flags. Capture output privately and return only a sanitized status summary; do not put account details, private hosts, scopes or diagnostic output into this public library.
 
+For a structured environment report, follow the [doctor report specification](environment-check.md). Its live checks verify sign-in only; repository access remains unverified. Establish that the selected version/check does not refresh or change credentials: current [GitHub status documentation](https://cli.github.com/manual/gh_auth_status) describes automatic refresh and a `--no-refresh` option, which older versions may not support. Use a supported non-mutating check or report validity unverified. Interpret the selected identity's documented result rather than assuming process exit zero proves sign-in.
+
 A timeout, DNS failure, proxy denial or unavailable service does not prove that credentials are absent or expired. Report the observed error separately from authentication state. Ask about a new authentication method only when the existing method is absent, unsuitable or cannot be established, and explain that uncertainty.
 
 ## Reporting

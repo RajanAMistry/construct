@@ -7,6 +7,7 @@ Reusable starting points.
 - [pr-description.md](pr-description.md): a pull or merge request description skeleton. Used by the [pre-push-review](../skills/developer/pre-push-review/SKILL.md) skill.
 - [digest-config.md](digest-config.md): the config skeleton the user fills in for the [weekly-digest](../skills/shared/weekly-digest/SKILL.md) skill.
 - [issue-description.md](issue-description.md): an issue description skeleton. Used by the [planner](../agents/planner.md) agent.
+- [doctor-report.md](doctor-report.md): a private environment report skeleton with live sign-in-only and offline examples, following the [environment check specification](../docs/environment-check.md).
 
 ## Index
 

@@ -44,6 +44,7 @@ Construct is public. Private notes, personal records and employer material belon
 | [Autonomous Agent Development: One-Month Learning Plan](docs/autonomous-agents/README.md) | Guide one month of learning and practical preparation through a bounded agent capstone | Draft | Structure and references reviewed 2026-09-24; not yet completed or tested by a learner |
 | [Tool and authentication preflight](docs/tool-preflight.md) | Check tool availability, existing connections, target identity and authentication methods before service access | Draft | Instructions and synthetic acceptance scenarios reviewed 2026-11-08; no live authentication flow tested |
 | [Guided terminal setup](docs/guided-setup.md) | Select harnesses and targets, review and apply local snapshots with overwrite backups | Draft | Synthetic filesystem acceptance checks; live harness activation unverified |
+| [Environment check report](docs/environment-check.md) | Specify doctor reporting for tools, adapters, permissions and live sign-in with an offline fallback | Draft | Report contract and synthetic scenario review; no executable collector or live sign-in test |
 
 ## Skill index
 
