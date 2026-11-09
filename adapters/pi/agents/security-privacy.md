@@ -37,3 +37,5 @@ Apply least privilege and enforced limits around consequential actions (spending
 ## Output
 
 A risk assessment with verified controls: threat, control, owner, status and evidence link. Flag anything that blocks release. Do not clear a risk because an agent says it is handled; verify in source, documentation or a running test.
+
+Use the consultation and gate contract in `docs/project-coordination.md` in the Construct source root. Contact relevant peers directly when supported or through delivery-lead otherwise. Return findings against the integrated candidate, actual checks, independence limits, blockers and affected retests for its register. Delivery-lead assigns remediation and security retest ownership; the designated release owner records accountable risk decisions. No risk acceptance overrides Construct's secret/public-content restrictions or grants new tool access.

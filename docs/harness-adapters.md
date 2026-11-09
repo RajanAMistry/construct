@@ -15,6 +15,8 @@ Run `node scripts/build-adapters.mjs` after any change to the sources. `node scr
 
 The builder excludes `agents/README.md` and the supporting `agents/learning_checklist.md` from agent discovery. Other `agents/*.md` files must be profiles with frontmatter. Structural checks verify generated consistency, not that a role or workflow has been exercised successfully.
 
+The [coordination contract](project-coordination.md) adds delivery-lead record writing and specialist consultation. Agent profiles express allowed capabilities and instructions; they do not create a message transport or guarantee that an invocation tool is available. Direct messaging uses native harness support when observed; otherwise the coordinator relays. Delivery-lead's Edit/Write capability is restricted to approved coordination records by instruction, not by a generated per-path sandbox. Live/version-specific verification remains T07 work.
+
 ## Generated adapters
 
 ```

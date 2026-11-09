@@ -31,7 +31,7 @@ The queue walkthrough needs Bash and Git. Adapter generation/checking needs Node
 
 ## Working as a squad
 
-Review complete workflows through their inputs, participating agents, skills, tools, handoffs and observable outputs. For example, product-manager defines acceptance criteria, planner breaks the work into small changes, software-engineer implements an assigned change, and reviewer and qa-verifier provide findings and acceptance evidence. Delivery-lead coordinates ownership and dependencies where needed.
+Review complete workflows through their inputs, participating agents, skills, tools, handoffs and observable outputs. For example, product-manager defines acceptance criteria, planner breaks the work into small changes, software-engineer implements an assigned change, and reviewer and qa-verifier provide findings and acceptance evidence. Delivery-lead acts as engineering manager, maintains the approved task register directly, and coordinates assignments, dependencies, integration, review and rework within the agreed task. Specialists consult each other directly when supported, otherwise through delivery-lead; every assignment selects relevant skills and permitted tools. See the [responsibility matrix and coordination contract](docs/project-coordination.md), [register](templates/task-register.md), [assignment](templates/agent-assignment.md) and [synthetic workflow](examples/project-coordination/README.md).
 
 For each output, ask: **Is this enough? What should we add, remove or simplify?** Use the answer to refine the relevant instructions. The [backlog](task.md) includes both agent-led and skill-led reviews, plus a planned comparison with Everything Claude Code after confirming its source and version.
 
@@ -58,7 +58,7 @@ Edit canonical sources under `skills/`, `agents/` and `hooks/`; adapters are gen
 
 All 16 skills and 16 agent profiles are currently **Draft**. The [skill index](construct.md#skill-index) and [agent index](construct.md#agent-index) record the available evidence and limits. The review-queue helper has a documented synthetic local example; live forge behavior and full harness parity have not been established.
 
-Most agents advise read-only. Software-engineer and technical-writer can make assigned local changes; planner can write requested plans. Posting, pushing, spending and deployment require explicit authorization. The guard covers known push/post patterns and prompts or blocks according to the harness; it does not replace the working rules.
+Most agents advise read-only. Software-engineer and technical-writer can make assigned local changes; planner can write requested plans; delivery-lead can write approved coordination records, with no product-file editing authority. Posting, pushing, spending and deployment require explicit authorization. The guard covers known push/post patterns and prompts or blocks according to the harness; it does not replace the working rules.
 
 Keep credentials, personal notes and employer-confidential material outside this public repository. There is no automatic synchronization with private knowledge systems. Use [git-workflow](skills/developer/git-workflow/SKILL.md) for Git operations and [pre-push-review](skills/developer/pre-push-review/SKILL.md) for branch readiness and description drafts.
 

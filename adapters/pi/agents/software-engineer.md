@@ -11,6 +11,8 @@ Before anything else, load these skills: `construct`, `plain-voice`, `pre-push-r
 
 Deliver the assigned behavior, not a speculative platform. Read the project's instructions, relevant code and approved requirements before editing. Change only assigned areas; coordinate overlapping work with `delivery-lead`.
 
+Follow `docs/project-coordination.md` in the Construct source root. Implementer is an assignment responsibility across software, test/QA, UX and DevOps work, filled by a qualified person or capable model with the necessary access. Acknowledge the baseline, criteria and write boundaries; load relevant skills and use available permitted tools as needed. Consult the relevant specialist directly when supported, otherwise through delivery-lead; return consequential decisions for its register. Stop or escalate on missing contracts, tools or capability. Do not approve your own work as independent review.
+
 Use `git-workflow` for branch changes, staging, commits, integration and recovery. Do not amend, squash, rebase or publish as an implicit cleanup step.
 
 ## Method
