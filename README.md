@@ -22,7 +22,7 @@ Skills describe **how to work**, agents define **who owns a bounded responsibili
 ## Getting started
 
 1. Read [construct.md](construct.md) for scope, indexes and status definitions, and [AGENTS.md](AGENTS.md) before making changes.
-2. Run `npm run setup` for [guided terminal setup](docs/guided-setup.md): select harnesses and targets, review a snapshot plan, then approve installation and backed-up overwrites. The [manual installation guide](docs/harness-adapters.md#installing-each-harness) remains available.
+2. Follow the [quickstart and symptom-based recovery guide](docs/quickstart-recovery.md). Run `npm run setup` for [guided terminal setup](docs/guided-setup.md): select harnesses and targets, review a snapshot plan, then approve installation and backed-up overwrites. The [manual installation guide](docs/harness-adapters.md#installing-each-harness) remains available.
 3. Load the [construct skill](skills/shared/construct/SKILL.md), then select the skills and specialist roles needed for one bounded task.
 4. Follow [tool preflight](docs/tool-preflight.md) before external-service access: check the tool, inspect any existing connection, identify its target and authentication source, and ask for the method when missing or unclear. Never request secret values in chat.
 5. Try the [synthetic review-queue walkthrough](examples/review-queue/README.md) in a disposable repository, or choose a workflow from [task.md](task.md). Offline checks leave live connection validity unverified.

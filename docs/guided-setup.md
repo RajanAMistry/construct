@@ -1,6 +1,6 @@
 # Guided terminal setup
 
-Run the dependency-free terminal wizard before installing Construct resources:
+For first-run success checks, symptom-based troubleshooting, updates and manual removal, use [quickstart and recovery](quickstart-recovery.md). Run the dependency-free terminal wizard before installing Construct resources:
 
 ```sh
 # From the Construct checkout:
@@ -68,7 +68,7 @@ npm run check
 
 Verification: all 17 synthetic checks passed, along with the adapter consistency check; an all-four terminal walkthrough applied its reviewed plan in a disposable project. These were implementation self-checks, not independent agent acceptance.
 
-The synthetic tests use disposable projects and home directories. They cover all four resource layouts, selected harnesses, global plus multiple projects, cancellation, reruns, backed-up file/directory/link replacement, stale-plan rejection, destination-symlink refusal, source allowlisting and apply-failure recovery. They verify filesystem outcomes; live harness discovery, hook enforcement, authentication and cross-agent communication remain unverified. The harness/agent statuses remain Draft. Environment diagnostics, private-configuration design, general validation and the full update/removal workflow remain separate backlog tasks.
+The synthetic tests use disposable projects and home directories. They cover all four resource layouts, selected harnesses, global plus multiple projects, cancellation, reruns, backed-up file/directory/link replacement, stale-plan rejection, destination-symlink refusal, source allowlisting and apply-failure recovery. They verify filesystem outcomes; live harness discovery, hook enforcement, authentication and cross-agent communication remain unverified. The harness/agent statuses remain Draft. Environment diagnostics, private-configuration design and general validation have separate specifications. The [quickstart and recovery guide](quickstart-recovery.md) covers the manual update/removal workflow; executable lifecycle tooling remains outside that scope.
 
 ## References consulted
 
