@@ -7,3 +7,4 @@ Usage guidance and decisions.
 - [guided-setup.md](guided-setup.md): terminal intake, review, snapshot installation, overwrite backups and offline acceptance evidence.
 - [environment-check.md](environment-check.md): doctor report specification for tools, adapters, permissions and live sign-in, with offline limits and synthetic acceptance scenarios; no executable yet.
 - [private-configuration.md](private-configuration.md): project-local host/account/path references and remembered common preferences, with secure credential references and a synthetic JSON example.
+- [offline-validation.md](offline-validation.md): proposed offline command, isolation, result/exit rules and versioned synthetic fixtures; specification only, with no runner yet.

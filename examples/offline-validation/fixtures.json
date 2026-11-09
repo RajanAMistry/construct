@@ -1,0 +1,766 @@
+{
+  "version": 1,
+  "synthetic": true,
+  "cases": [
+    {
+      "id": "SETUP-01",
+      "category": "setup",
+      "required": true,
+      "basis": "existing-behavior",
+      "input": {
+        "confirmation": "no",
+        "plannedChanges": 3
+      },
+      "expected": {
+        "cancelled": true,
+        "writes": 0
+      }
+    },
+    {
+      "id": "SETUP-02",
+      "category": "setup",
+      "required": true,
+      "basis": "existing-behavior",
+      "input": {
+        "installation": "same-snapshot-and-choices",
+        "privateConfig": "project/.construct-setup/config.json"
+      },
+      "expected": {
+        "changed": 0,
+        "backupsCreated": 0,
+        "privateConfigUnchanged": true
+      }
+    },
+    {
+      "id": "SETUP-03",
+      "category": "setup",
+      "required": true,
+      "basis": "existing-behavior",
+      "input": {
+        "plan": "reviewed",
+        "destination": "edited-after-review",
+        "approved": true
+      },
+      "expected": {
+        "decision": "reject-stale-plan",
+        "writes": 0,
+        "newerEditPreserved": true
+      }
+    },
+    {
+      "id": "SETUP-04",
+      "category": "setup",
+      "required": true,
+      "basis": "existing-behavior",
+      "input": {
+        "destination": "existing-file",
+        "replacement": "different-public-content",
+        "approved": true
+      },
+      "expected": {
+        "decision": "apply",
+        "backupMatchesOriginal": true,
+        "unrelatedFilesUnchanged": true
+      }
+    },
+    {
+      "id": "SETUP-05",
+      "category": "setup",
+      "required": true,
+      "basis": "existing-behavior",
+      "input": {
+        "installation": "new",
+        "privateConfig": "project/.construct-setup/config.json",
+        "privateConfigContent": {
+          "version": 1,
+          "services": []
+        }
+      },
+      "expected": {
+        "privateConfigUnchanged": true,
+        "nativeGitConfigUnchanged": true
+      }
+    },
+    {
+      "id": "COMMAND-01",
+      "category": "command",
+      "required": true,
+      "basis": "existing-behavior",
+      "input": {
+        "entry": "setup",
+        "argv": [
+          "--help"
+        ]
+      },
+      "expected": {
+        "exit": 0,
+        "prompts": 0,
+        "writes": 0,
+        "helpContains": "No network requests"
+      }
+    },
+    {
+      "id": "COMMAND-02",
+      "category": "command",
+      "required": true,
+      "basis": "existing-behavior",
+      "input": {
+        "entry": "setup",
+        "argv": [
+          "--unknown-fixture-option"
+        ]
+      },
+      "expected": {
+        "exit": 1,
+        "prompts": 0,
+        "writes": 0
+      }
+    },
+    {
+      "id": "COMMAND-03",
+      "category": "command",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "tool": "example-cli",
+        "version": "1.0",
+        "helpFlags": [
+          "--hostname"
+        ],
+        "target": "forge.example.com",
+        "mode": "offline"
+      },
+      "expected": {
+        "supportedArgv": [
+          "auth",
+          "status",
+          "--hostname",
+          "forge.example.com"
+        ],
+        "realInvocations": 0,
+        "validity": "unverified"
+      }
+    },
+    {
+      "id": "COMMAND-04",
+      "category": "command",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "tool": "example-cli",
+        "version": "1.0",
+        "helpFlags": [
+          "--hostname"
+        ],
+        "statusMayRefresh": true,
+        "safeSuppressionKnown": false
+      },
+      "expected": {
+        "decision": "withhold-unsafe-check",
+        "noRefreshFlagInvented": false,
+        "realInvocations": 0,
+        "validity": "unverified"
+      }
+    },
+    {
+      "id": "COMMAND-05",
+      "category": "command",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "tool": "example-cli",
+        "fixtureExit": 0,
+        "fixtureStatus": {
+          "authenticated": false
+        },
+        "evidence": "canned-output",
+        "mode": "offline"
+      },
+      "expected": {
+        "decision": "interpret-authentication-failure",
+        "liveValidity": "unverified",
+        "evidence": "executed-synthetic"
+      }
+    },
+    {
+      "id": "COMMAND-06",
+      "category": "command",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "entry": "proposed-validate",
+        "argv": [
+          "--unknown-fixture-option"
+        ]
+      },
+      "expected": {
+        "overall": "incomplete",
+        "exit": 2,
+        "casesStarted": 0,
+        "writes": 0
+      }
+    },
+    {
+      "id": "AUTH-01",
+      "category": "authentication",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "toolContract": "gh-2.46.0-github.com",
+        "sourcePresence": {
+          "GH_TOKEN": true,
+          "GITHUB_TOKEN": true,
+          "saved-cli": true
+        },
+        "mode": "offline"
+      },
+      "expected": {
+        "effectiveSource": "GH_TOKEN",
+        "account": "unknown",
+        "validity": "unverified",
+        "credentialValueReads": 0
+      }
+    },
+    {
+      "id": "AUTH-02",
+      "category": "authentication",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "expectedAccount": null,
+        "sourcePresence": {
+          "EXAMPLE_FORGE_TOKEN": true
+        },
+        "mode": "offline"
+      },
+      "expected": {
+        "account": "unknown",
+        "question": "Which account should this service target?",
+        "questionCount": 1,
+        "realInvocations": 0
+      }
+    },
+    {
+      "id": "AUTH-03",
+      "category": "authentication",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "expectedHost": "forge.example.com",
+        "observedHost": "other.example.com",
+        "mode": "offline"
+      },
+      "expected": {
+        "decision": "blocked-target-mismatch",
+        "automaticSwitch": false,
+        "realInvocations": 0,
+        "validity": "unverified"
+      }
+    },
+    {
+      "id": "AUTH-04",
+      "category": "authentication",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "gitTransport": "ssh-configured",
+        "forgeApiSource": "not-configured",
+        "mode": "offline"
+      },
+      "expected": {
+        "forgeApiConfiguration": "not-configured",
+        "validity": "unverified",
+        "gitProvesApiSignIn": false
+      }
+    },
+    {
+      "id": "AUTH-05",
+      "category": "authentication",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "tool": "example-cli",
+        "supportedMethods": [
+          "saved-cli",
+          "environment"
+        ],
+        "sourcePresence": {
+          "saved-cli": false,
+          "environment": false
+        }
+      },
+      "expected": {
+        "decision": "ask-supported-method",
+        "question": "Should example-cli use a saved CLI login or an environment credential?",
+        "questionCount": 1,
+        "loginStarted": false,
+        "secretRequested": false
+      }
+    },
+    {
+      "id": "AUTH-06",
+      "category": "authentication",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "connectorState": "cached-connected",
+        "methodMetadataAvailable": false,
+        "mode": "offline"
+      },
+      "expected": {
+        "configuration": "configured",
+        "effectiveSource": "unknown",
+        "validity": "unverified",
+        "hiddenStoreRead": false
+      }
+    },
+    {
+      "id": "ADAPTER-01",
+      "category": "adapter",
+      "required": true,
+      "basis": "existing-behavior",
+      "input": {
+        "copy": "complete-public-checkout",
+        "operations": [
+          "build",
+          "build",
+          "check"
+        ]
+      },
+      "expected": {
+        "checkExit": 0,
+        "secondBuildChanges": 0,
+        "sourceCheckoutUnchanged": true
+      }
+    },
+    {
+      "id": "ADAPTER-02",
+      "category": "adapter",
+      "required": true,
+      "basis": "existing-behavior",
+      "input": {
+        "copy": "complete-public-checkout",
+        "mutation": "edit-generated-agent",
+        "operation": "check"
+      },
+      "expected": {
+        "checkExit": 1,
+        "mutationPreserved": true,
+        "automaticRepair": false,
+        "sourceCheckoutUnchanged": true
+      }
+    },
+    {
+      "id": "ADAPTER-03",
+      "category": "adapter",
+      "required": true,
+      "basis": "existing-behavior",
+      "input": {
+        "copy": "complete-public-checkout",
+        "mutation": "break-generated-skill-symlink",
+        "operation": "check"
+      },
+      "expected": {
+        "checkExit": 1,
+        "automaticRepair": false,
+        "sourceCheckoutUnchanged": true
+      }
+    },
+    {
+      "id": "GUARD-01",
+      "category": "guard",
+      "required": true,
+      "basis": "existing-behavior",
+      "input": {
+        "dialect": "claude",
+        "jqAvailable": true,
+        "tool": "Bash",
+        "command": "git status --short"
+      },
+      "expected": {
+        "emittedDecision": null,
+        "exit": 0,
+        "payloadExecutions": 0
+      }
+    },
+    {
+      "id": "GUARD-02",
+      "category": "guard",
+      "required": true,
+      "basis": "existing-behavior",
+      "input": {
+        "dialect": "claude",
+        "jqAvailable": true,
+        "tool": "Bash",
+        "command": "git push origin main"
+      },
+      "expected": {
+        "emittedDecision": "ask",
+        "exit": 0,
+        "payloadExecutions": 0
+      }
+    },
+    {
+      "id": "GUARD-03",
+      "category": "guard",
+      "required": true,
+      "basis": "existing-behavior",
+      "input": {
+        "dialect": "codex",
+        "jqAvailable": true,
+        "tool": "Bash",
+        "command": "gh api repos/example/project/issues -X POST"
+      },
+      "expected": {
+        "emittedDecision": "deny",
+        "exit": 0,
+        "payloadExecutions": 0
+      }
+    },
+    {
+      "id": "GUARD-04",
+      "category": "guard",
+      "required": true,
+      "basis": "existing-behavior",
+      "input": {
+        "dialect": "claude",
+        "jqAvailable": true,
+        "tool": "Bash",
+        "command": "glab mr note list 7"
+      },
+      "expected": {
+        "emittedDecision": null,
+        "exit": 0,
+        "payloadExecutions": 0
+      }
+    },
+    {
+      "id": "GUARD-05",
+      "category": "guard",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "dialect": "claude",
+        "jqAvailable": false,
+        "tool": "Bash",
+        "command": "git push origin main"
+      },
+      "expected": {
+        "emittedDecision": null,
+        "hookExit": 0,
+        "diagnosticDecision": "blocked-missing-jq",
+        "runtimeEnforcement": "unverified",
+        "payloadExecutions": 0
+      }
+    },
+    {
+      "id": "GUARD-06",
+      "category": "guard",
+      "required": true,
+      "basis": "existing-behavior",
+      "input": {
+        "dialect": "codex",
+        "jqAvailable": true,
+        "tool": "Bash",
+        "command": "git push origin main",
+        "argv": [
+          "git",
+          "push",
+          "origin",
+          "main"
+        ]
+      },
+      "expected": {
+        "emittedDecision": null,
+        "generatedPrefixDecision": "prompt",
+        "runtimeEnforcement": "unverified",
+        "payloadExecutions": 0
+      }
+    },
+    {
+      "id": "GUARD-07",
+      "category": "guard",
+      "required": true,
+      "basis": "existing-behavior",
+      "input": {
+        "dialect": "pi",
+        "tool": "bash",
+        "command": "git push origin main",
+        "hasUI": false
+      },
+      "expected": {
+        "block": true,
+        "confirmCalls": 0,
+        "payloadExecutions": 0
+      }
+    },
+    {
+      "id": "GUARD-08",
+      "category": "guard",
+      "required": true,
+      "basis": "existing-behavior",
+      "input": {
+        "dialect": "pi",
+        "tool": "bash",
+        "command": "git push origin main",
+        "hasUI": true,
+        "confirmation": false
+      },
+      "expected": {
+        "block": true,
+        "confirmCalls": 1,
+        "payloadExecutions": 0
+      }
+    },
+    {
+      "id": "GUARD-09",
+      "category": "guard",
+      "required": true,
+      "basis": "existing-behavior",
+      "input": {
+        "dialect": "pi",
+        "tool": "bash",
+        "command": "git push origin main",
+        "hasUI": true,
+        "confirmation": true
+      },
+      "expected": {
+        "returnsControl": true,
+        "confirmCalls": 1,
+        "payloadExecutions": 0
+      }
+    },
+    {
+      "id": "GUARD-10",
+      "category": "guard",
+      "required": true,
+      "basis": "existing-behavior",
+      "input": {
+        "dialect": "opencode",
+        "command": "git push origin main",
+        "canonicalPattern": "git push*"
+      },
+      "expected": {
+        "generatedPermission": "ask",
+        "runtimeEnforcement": "unverified",
+        "payloadExecutions": 0
+      }
+    },
+    {
+      "id": "REPORT-01",
+      "category": "report",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "requiredCategoriesCovered": true,
+        "isolationVerified": true,
+        "results": [
+          {
+            "required": true,
+            "state": "blocked"
+          }
+        ]
+      },
+      "expected": {
+        "overall": "incomplete",
+        "exit": 2
+      }
+    },
+    {
+      "id": "REPORT-02",
+      "category": "report",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "requiredCategoriesCovered": true,
+        "isolationVerified": true,
+        "results": [
+          {
+            "required": true,
+            "state": "not-run"
+          }
+        ]
+      },
+      "expected": {
+        "overall": "incomplete",
+        "exit": 2
+      }
+    },
+    {
+      "id": "REPORT-03",
+      "category": "report",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "requiredCategoriesCovered": true,
+        "isolationVerified": true,
+        "results": [
+          {
+            "required": true,
+            "state": "fail"
+          }
+        ]
+      },
+      "expected": {
+        "overall": "failed",
+        "exit": 1
+      }
+    },
+    {
+      "id": "REPORT-04",
+      "category": "report",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "requiredCategoriesCovered": true,
+        "isolationVerified": true,
+        "results": [
+          {
+            "required": true,
+            "state": "pass"
+          },
+          {
+            "required": false,
+            "state": "skipped",
+            "reason": "optional fixture extension omitted"
+          }
+        ]
+      },
+      "expected": {
+        "overall": "passed",
+        "exit": 0
+      }
+    },
+    {
+      "id": "REPORT-05",
+      "category": "report",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "requiredCategoriesCovered": true,
+        "isolationVerified": true,
+        "results": [
+          {
+            "required": true,
+            "state": "blocked"
+          },
+          {
+            "required": true,
+            "state": "fail"
+          }
+        ]
+      },
+      "expected": {
+        "overall": "failed",
+        "exit": 1,
+        "incompleteChecksListed": true
+      }
+    },
+    {
+      "id": "REPORT-06",
+      "category": "report",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "requiredCategoriesCovered": false,
+        "isolationVerified": true,
+        "results": []
+      },
+      "expected": {
+        "overall": "incomplete",
+        "exit": 2
+      }
+    },
+    {
+      "id": "REPORT-07",
+      "category": "report",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "requiredCategoriesCovered": true,
+        "isolationVerified": true,
+        "results": [
+          {
+            "required": true,
+            "state": "skipped",
+            "reason": "attempted-required-waiver"
+          }
+        ]
+      },
+      "expected": {
+        "overall": "incomplete",
+        "exit": 2
+      }
+    },
+    {
+      "id": "REPORT-08",
+      "category": "report",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "requiredCategoriesCovered": true,
+        "isolationVerified": true,
+        "results": [
+          {
+            "required": true,
+            "state": "pass"
+          },
+          {
+            "required": false,
+            "state": "fail"
+          }
+        ]
+      },
+      "expected": {
+        "overall": "failed",
+        "exit": 1
+      }
+    },
+    {
+      "id": "ISOLATION-01",
+      "category": "isolation",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "event": "unexpected-outbound-attempt",
+        "destination": "forge.example.com",
+        "interception": "local-deny-before-connect"
+      },
+      "expected": {
+        "caseState": "fail",
+        "realConnections": 0,
+        "rawOutputPublished": false
+      }
+    },
+    {
+      "id": "ISOLATION-02",
+      "category": "isolation",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "catalogVersion": 99,
+        "synthetic": true
+      },
+      "expected": {
+        "overall": "incomplete",
+        "exit": 2,
+        "casesStarted": 0,
+        "writes": 0
+      }
+    },
+    {
+      "id": "ISOLATION-03",
+      "category": "isolation",
+      "required": true,
+      "basis": "proposed-contract",
+      "input": {
+        "networkDenialEstablished": false
+      },
+      "expected": {
+        "overall": "incomplete",
+        "exit": 2,
+        "unsafeCasesStarted": 0
+      }
+    }
+  ]
+}

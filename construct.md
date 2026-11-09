@@ -46,6 +46,7 @@ Construct is public. Private notes, personal records and employer material belon
 | [Guided terminal setup](docs/guided-setup.md) | Select harnesses and targets, review and apply local snapshots with overwrite backups | Draft | Synthetic filesystem acceptance checks; live harness activation unverified |
 | [Environment check report](docs/environment-check.md) | Specify doctor reporting for tools, adapters, permissions and live sign-in with an offline fallback | Draft | Report contract and synthetic scenario review; no executable collector or live sign-in test |
 | [Project-private configuration](docs/private-configuration.md) | Keep project targets and remembered common preferences local, using credential references only | Draft | Synthetic JSON, ignore and setup-preservation checks; no executable loader or live sign-in |
+| [Offline validation specification](docs/offline-validation.md) | Define isolated synthetic checks, fixtures, reporting and failure/incomplete exit rules | Draft | Markdown/JSON contract review and existing checks; no validation runner or executed catalog results |
 
 ## Skill index
 
