@@ -1,6 +1,6 @@
 # T06 coordination execution record
 
-Status: Verified for the agreed local T06 scope; publication is tracked separately below. This is the canonical task record for the public, synthetic T06 demonstration. Delivery-lead is its sole writer. The scenario is synthetic; agent exchanges and checks recorded as executed below must be observed. No private project records belong here.
+Status: Verified for the agreed T06 scope. Implementation publication is confirmed in the receipt below; no deployment is implied. This is the canonical task record for the public, synthetic T06 demonstration. Delivery-lead is its sole writer. The scenario is synthetic; agent exchanges and checks recorded as executed below must be observed. No private project records belong here.
 
 ## Summary
 
@@ -12,7 +12,7 @@ Integrated I1 adds the six-section contract/templates, remembered task-location 
 
 ## What needs building
 
-No implementation remains in the agreed local scope. Automatic preference loading, tracker/Google Docs synchronization, cross-harness support and deployment remain excluded and unverified. R1 has approved closure content. Root owns the final staged review, commit and authorized Git publication, with credential clarification pending as recorded below.
+No implementation remains in the agreed local scope. Automatic preference loading, tracker/Google Docs synchronization, cross-harness support and deployment remain excluded and unverified. R1 approved closure content. Root completed staged review and committed the implementation as `afbc42436fa0e8ffdbe720d0ae5d482ecdaeb305`; its publication to the verified remote main branch was independently confirmed. No further build work is required.
 
 ## How to start servers
 
@@ -24,7 +24,7 @@ From repository root: `node --test examples/project-coordination/demo/server.tes
 
 ## Blockers
 
-Publication only: the GitHub API identity check returned Forbidden; root asked the user to confirm the existing environment credential and verified repository/main target. Resume on clarified authentication and an ordinary Git transport check. No implementation blocker. External issue/Jira/Google Docs writes and cross-harness communication are excluded.
+None for the agreed scope. The user confirmed the existing environment credential for the verified repository/main target; the ordinary Git push succeeded and a separate remote-ref read confirmed the implementation commit. The earlier API identity-check failure remains historical evidence, not a current publication blocker. External issue/Jira/Google Docs writes and cross-harness communication are excluded.
 
 ## Scope and acceptance
 
@@ -67,6 +67,7 @@ C1 allowed writes: `docs/project-coordination.md`, `docs/private-configuration.m
 | E07 | Root identified the integrated I1 manifest and dispatched distinct R1 and Q1 instances only after C1/E1/W1 integration. Both acknowledged baseline, boundaries, checks and retry budget. R1 disclosed inherited conversation context and no implementation/planning participation; Q1 disclosed no design/implementation participation. | Reviewers inspect the stable candidate and return separate findings/evidence; root is sole record writer. |
 | E08 | Q1 returned QA go for C1–C3/D1–D3 on unchanged I1. It ran disposable default startup, health/404/POST/HEAD, occupied-port error, ports 0 and 65535, nine invalid values, SIGINT exit 0 and curl-after-stop exit 7; documented suite passed 13/13. Its stale-summary observation was resolved by root refreshing the current six sections while retaining P01. | Root acknowledged Q1; no implementation defect or source changes. Q1 retains retest ownership if behavior changes. |
 | E09 | R1 returned code/document go on unchanged I1: 13/13 server checks, 68-file/65-link adapter consistency, 16 TOML parses, 147 local links, syntax/JSON/diff and contextual privacy review. Root fixed event-table spacing in this record as requested. | Root acknowledged R1; final record/task closure needs a separate content review. No I1 source edits or implementation rework were needed. |
+| E10 | User confirmed the existing environment credential for the verified repository/main target. Root refreshed main, confirmed only the reviewed T06 commit was outgoing, pushed normally and separately read the remote ref. | Remote main matched `afbc42436fa0e8ffdbe720d0ae5d482ecdaeb305`. Publication blocker resolved; this receipt is a follow-up documentation commit. |
 
 ## Progress snapshot P01
 
@@ -91,9 +92,9 @@ C1: pass, six sections at progress/completion in contract, templates and source 
 
 No implementation candidate was rejected and no artificial failure was inserted. Port-error checks are deliberate negative tests. The one-initial/one-focused-rework budget and escalation behavior are explicit contracts; exhausted-budget/cross-harness failure handling was not exercised live. Root supplied design/integration and its checks are self-review; R1/Q1 are separate instances with inherited context, not isolated human reviewers. The general coordination workflow remains Draft.
 
-Acceptance: C1–C3/D1–D3 met for I1; T06 is checked complete on that evidence; R1 closure-content review passed before staging/publication. Final local state: Verified, not Released. No deployment requested. Residual implementation blockers: none. Publication: root will review staged content, commit and verify an ordinary push only after resolving the pending Git authentication clarification. An authenticated identity check returned Forbidden; this is not proof that the credential is absent/expired. No credentials or private identity values are retained here. Do not infer remote synchronization from this acceptance record.
+Acceptance: C1–C3/D1–D3 met for I1; T06 is checked complete on that evidence; R1 closure-content review passed before staging/publication. Final local state: Verified, not Released. No deployment requested. Residual implementation blockers: none. Publication receipt: implementation commit `afbc42436fa0e8ffdbe720d0ae5d482ecdaeb305` was pushed normally to `https://github.com/RajanAMistry/construct.git`, `refs/heads/main`; an independent `git ls-remote` returned that exact commit. The user-confirmed existing environment credential was used through a command-scoped native Git helper; no credential configuration or values were committed. This receipt is recorded afterward and does not claim deployment. Subsequent publication is verified against the remote ref at handoff.
 
-Final closure-content review: R1 go on the record SHA256 `1b56ebacb0fd75d6f7cbe6609363a49eaafe5ec0da730332ff77c1ce7d510d55` and T06-only task.md SHA256 `ff1a006f932ada276ee05c60c94ccab435577fb33e5434ad85cf7365abd3caf2`. This receipt and current-state wording were appended afterward; source I1 remained unchanged. R1 reported no privacy findings and a contiguous event table. Next action: finish closure/publication for T06 only; do not begin another task.
+Final closure-content review: R1 go on the record SHA256 `1b56ebacb0fd75d6f7cbe6609363a49eaafe5ec0da730332ff77c1ce7d510d55` and T06-only task.md SHA256 `ff1a006f932ada276ee05c60c94ccab435577fb33e5434ad85cf7365abd3caf2`. This receipt and current-state wording were appended afterward; source I1 remained unchanged. R1 reported no privacy findings and a contiguous event table. Next action: publish this receipt, verify the final remote tip and stop; do not begin another task.
 
 ## Integrated review candidate
 
