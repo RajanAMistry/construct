@@ -11,4 +11,4 @@ Usage guidance and decisions.
 - [private-configuration.md](private-configuration.md): project-local host/account/path references and remembered common preferences, with secure credential references and a synthetic JSON example.
 - [offline-validation.md](offline-validation.md): proposed offline command, isolation, result/exit rules and versioned synthetic fixtures; specification only, with no runner yet.
 - [quickstart-recovery.md](quickstart-recovery.md): first run, symptom-based troubleshooting and manual update, rollback and removal with preservation checks.
-- [harness-behavior.md](harness-behavior.md): T07 capability matrix, pinned upstream research, coordinator relay procedure and remaining live verification checks.
+- [harness-behavior.md](harness-behavior.md): T07 capability matrix, pinned upstream research, OpenCode v2.2.6 VM discovery evidence, coordinator relay and deferred local verification checks.

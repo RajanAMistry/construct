@@ -15,7 +15,7 @@ Run `node scripts/build-adapters.mjs` after any change to the sources. `node scr
 
 The builder excludes `agents/README.md` and the supporting `agents/learning_checklist.md` from agent discovery. Other `agents/*.md` files must be profiles with frontmatter. Structural checks verify generated consistency, not that a role or workflow has been exercised successfully.
 
-The [coordination contract](project-coordination.md) adds delivery-lead record writing and specialist consultation. Agent profiles express allowed capabilities and instructions; they do not create a message transport or guarantee that an invocation tool is available. Direct messaging uses native harness support when observed; otherwise the coordinator relays. Delivery-lead's Edit/Write capability is restricted to approved coordination records by instruction, not by a generated per-path sandbox. See the [T07 behavior report](harness-behavior.md) for source evidence, the unresolved OpenCode permission-format discrepancy, relay procedure and remaining live checks. Live/version-specific verification remains incomplete.
+The [coordination contract](project-coordination.md) adds delivery-lead record writing and specialist consultation. Agent profiles express allowed capabilities and instructions; they do not create a message transport or guarantee that an invocation tool is available. Direct messaging uses native harness support when observed; otherwise the coordinator relays. Delivery-lead's Edit/Write capability is restricted to approved coordination records by instruction, not by a generated per-path sandbox. See the [T07 behavior report](harness-behavior.md) for source evidence, OpenCode v2.2.6 configuration/profile discovery, relay procedure and remaining live checks. V2 uses the generated plural `permissions` format; the earlier discrepancy came from a v1 comparison. Runtime invocation and permission enforcement remain unverified.
 
 ## Generated adapters
 
@@ -65,14 +65,14 @@ claude --plugin-dir <this checkout>
 
 ### OpenCode
 
-Point OpenCode's extra config folder at the adapter. It brings the agents, the commands and the guard permissions:
+This adapter targets OpenCode v2, distributed as `@opencode/cli`; the older `opencode-ai` package is the v1 line. Configuration/profile discovery was checked with v2.2.6. Recheck the installed version when using a newer release. Point OpenCode's extra config folder at the adapter. It brings the agents, the commands and the guard permissions:
 
 ```bash
 export OPENCODE_CONFIG_DIR=<this checkout>/adapters/opencode
 ```
-Add that to your shell profile. If you already use `OPENCODE_CONFIG_DIR`, link the files into your own folder instead and copy the `permission.bash` rules from `opencode.json`.
+Add that to your shell profile. If you already use `OPENCODE_CONFIG_DIR`, link the files into your own folder instead and merge the ordered `permissions` rules from `opencode.json`, preserving existing rules and reviewing last-match precedence.
 
-Run: `opencode`, then `/code-review 123`, `@reviewer look at this branch`.
+Check loading with `opencode debug config --standalone` and `opencode debug agents --standalone` from a disposable project. Loading is not a permission-enforcement test. Run: `opencode`, then `/code-review 123`, `@reviewer look at this branch`.
 
 ### pi
 
@@ -124,7 +124,7 @@ Run: `codex "review #123"`, `$skill:til`, `$skill:feature-doc`.
 - `bash_regex` — ERE/JS compatible, used by the Claude/Codex hook script.
 - `bash_ignore` — read-only `glab note list` calls.
 - `codex_hook_regex` — subset for the Codex hook backstop (raw mutations, MCP writes).
-- `opencode_shell_ask` — literal glob patterns for OpenCode's `permission.bash`.
+- `opencode_shell_ask` — wildcard resources for OpenCode v2 `permissions` rules with `action: shell` and `effect: ask`.
 - `codex_rules` — argv prefixes for Codex's `prefix_rule` (the prompt layer).
 - `mcp_write_tools` — regex for forge MCP write tool names.
 
