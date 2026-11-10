@@ -1,10 +1,38 @@
 # Current task register
 
-Follow [project coordination](../docs/project-coordination.md). Copy into the approved project location; keep real private records outside public Construct. Delivery-lead is the sole writer. This is the execution record for one agreed task, not a replacement backlog.
+Follow [project coordination](../docs/project-coordination.md). Copy into the approved project location; keep real private records outside public Construct. Delivery-lead is the sole writer. This is the canonical execution record for one agreed task, not a replacement backlog. Use the same body in a chosen Markdown file, GitHub/GitLab issue or Jira ticket. Update the six developer sections at progress and completion; keep earlier evidence in the event history.
+
+Canonical task record: `<exact file path, issue URL or ticket reference>`. Remembered project preference: `<kind and folder/repository/project reference; private configuration location>`. Planning document: `<optional Google Doc reference or none; link back to this record>`. Update state: `<current, or pending external update with draft location/blocker; never imply synchronization>`.
+
+## Summary
+
+`<Task purpose, state and candidate revision/diff; progress or completion handoff>`.
+
+## What is built
+
+`<Observable implemented behavior, evidence and limits; distinguish planned behavior>`.
+
+## What needs building
+
+`<Unmet criteria/work, owner and next action; none only when verified>`.
+
+## How to start servers
+
+`<Working directory, prerequisites, configuration names only, exact commands, URLs, expected startup result, stop instructions and verified/not-run status; or not applicable with reason>`.
+
+## How to test
+
+`<Working directory, prerequisites/configuration names, exact commands, expected results, actual candidate-specific results and failed/blocked/not-run checks>`.
+
+## Blockers
+
+`<Each blocker, owner, impact, next action and resume condition; explicitly none if no known blockers>`.
+
+## Coordination details
 
 Task/backlog reference: `<ID, objective and approved scope>`. Acceptance criteria: `<IDs and observable checks>`. Exclusions/stop boundary: `<scope and stop after this task>`.
 
-Accountable human/product decision owner: `<reference>`. Delivery-lead/register writer: `<reference>`. Integration owner: `<reference>`. Designated release owner/authority: `<reference and limits>`. Approved register path: `<path>`.
+Accountable human/product decision owner: `<reference>`. Delivery-lead/register writer: `<reference>`. Integration owner: `<reference>`. Designated release owner/authority: `<reference and limits>`. Approved canonical record location: `<file path, issue URL or ticket reference>`.
 
 Current baseline/integrated candidate: `<exact revision and dirty diff reference if needed>`. Budget: `<attempt/time/cost limits; escalation trigger>`. Coordination mode: `<direct messaging tool or lead relay; observed capability and limits>`.
 
@@ -28,7 +56,7 @@ Current baseline/integrated candidate: `<exact revision and dirty diff reference
 | --- | --- | --- | --- | --- |
 | `<ordered event ID>` | `<ID; revision>` | `<sender; recipient; question; evidence; answer or blocker>` | `<decision; owner; authority; or pending>` | `<state; fix owner; retest owner; resume point>` |
 
-Preserve rejected evidence and superseded revisions. For evidence retained after changes, record why it remains applicable. Record retry count and stop on the agreed escalation trigger.
+Before each update, read the latest canonical record and reconcile concurrent edits. Retain candidate-labelled progress snapshots of the six developer sections here. Preserve rejected evidence and superseded revisions. For evidence retained after changes, record why it remains applicable. Record retry count and stop on the agreed escalation trigger.
 
 ## Closure or release handoff
 

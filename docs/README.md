@@ -2,7 +2,7 @@
 
 Usage guidance and decisions.
 
-- [project-coordination.md](project-coordination.md): engineering-manager ownership, decision matrix, one writable task register, self-contained assignments, specialist consultation and revision-specific acceptance/release gates; documented synthetic workflow only.
+- [project-coordination.md](project-coordination.md): one canonical task record, six-section developer handoffs at progress/completion, remembered location, ownership, consultation and revision-specific gates; links to the fictional walkthrough and the T06 local demo/execution record.
 
 - [harness-adapters.md](harness-adapters.md): how the library generates four harness adapters from one canonical source.
 - [tool-preflight.md](tool-preflight.md): check tool availability, existing connections, target identity and authentication methods, with offline acceptance scenarios.

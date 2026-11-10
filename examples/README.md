@@ -4,6 +4,8 @@ Synthetic, reproducible examples.
 
 - [project-coordination/](project-coordination/README.md): fictional brief, assignments and task register showing parallel work, specialist consultation, rejection/rework and acceptance handoff; a manual contract walkthrough, not executed product tests or live agent messaging.
 
+- [project-coordination/demo/](project-coordination/demo/README.md): dependency-free local server fixture for the T06 workflow; actual checks, agent handoffs and remaining work belong to its [canonical execution record](project-coordination/run.md).
+
 - [review-queue/](review-queue/): a runnable pure-git implementation of the review-queue helper contract. Verified on 2026-10-10: list, brief, stash-safe apply and restore, refusal paths.
 - [offline-validation/fixtures.json](offline-validation/fixtures.json): versioned synthetic inputs and expected decisions for the [offline validation specification](../docs/offline-validation.md). These are contract examples, not an executable suite or recorded passes.
 

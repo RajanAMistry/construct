@@ -28,6 +28,11 @@
         "method": null,
         "sourceReference": null
       }
+    },
+    "coordination": {
+      "recordKind": "ask",
+      "recordLocation": null,
+      "planningDocument": null
     }
   }
 }

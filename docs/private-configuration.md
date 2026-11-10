@@ -36,6 +36,7 @@ Create the directory and copy the template only if neither already exists as a c
 | `services[].host`, `accountReference` | Agreed hostname without scheme, path or embedded credentials, and intended account/workspace reference; `null` means ask before dependent access |
 | `services[].authentication` | Supported method and credential-source reference, never a credential value; unresolved fields are `null` |
 | `commonPreferences.git` | Separate identity and transport-authentication choices, remembered for this project only |
+| `commonPreferences.coordination` | Chosen task-record kind/location and optional planning-document reference, remembered for this project only; see below |
 
 JSON is data, never executable configuration. Do not source it into a shell, evaluate fields, expand command substitutions, or invoke a credential manager from a stored reference. Unexpected fields, duplicate service IDs, invalid JSON or a wrong field type require correction before dependent work; there is no executable validator in T03. No timestamps or previous connection results are stored: remembered intent is not fresh authentication evidence.
 
@@ -52,6 +53,26 @@ Once the user answers, update only the agreed fields in this project's private f
 This file does not override native tool precedence. For example, an environment credential can override a saved CLI login. Compare the selected source and target with safe observed metadata under [tool preflight](tool-preflight.md); report conflicts rather than silently changing the environment. Offline checks leave connection validity unverified.
 
 Remembering a preference is not permission to edit `.git/config`, global Git configuration, shell profiles, credential stores or harness settings. If a project-specific native change is needed, present the exact proposed local change for separate agreement and follow the tool's supported procedure. Do not change shared/global settings automatically. Follow the [doctor specification](environment-check.md) for current connection evidence, and its separate report retention rules.
+
+## Coordination preferences
+
+Apply the [coordination contract](project-coordination.md) manually; no loader or interactive collector is implemented. Add these fields under `commonPreferences.coordination` in the existing private copy, preserving other choices:
+
+```json
+{
+  "recordKind": "markdown",
+  "recordLocation": "./coordination",
+  "planningDocument": null
+}
+```
+
+The synthetic template starts with `recordKind: "ask"` and null references. At project intake, ask one question for the task-record kind: `markdown`, `github-issue`, `gitlab-issue` or `jira`. After the user explicitly expresses no preference, record `markdown`; silence is unresolved. Then resolve the location one focused question at a time. `recordLocation` is a project-relative folder for Markdown or an agreed repository/project reference for external tickets, never a credential-bearing URL. Resolve relative folders from the project root. Each task gets its own canonical file/issue/ticket reference in its task record and assignments. Do not overwrite the preference with the most recent task's issue URL.
+
+`planningDocument` is an optional Google Doc reference or `null` when none is needed. Ask for it only when planning calls for a document. The plan and current task record link to each other; the task record remains authoritative for accepted decisions, progress and acceptance. Keep real private document links and project targets only in the ignored configuration and the approved project records, never in public examples.
+
+Reuse the settled kind/location without asking again. Ask when missing, conflicting, or the user requests a change. Read the latest private copy, update only agreed fields and preserve concurrent edits and unrelated preferences. Remembered location is neither current connection evidence nor external-write permission. Missing access preserves the choice: report a blocker and retain a clearly labelled pending local draft rather than switching the canonical source silently. Reconcile the draft with the latest canonical record once permitted access returns.
+
+Manual contract scenarios for T06: unresolved kind asks once; explicit no preference selects Markdown; a later session reuses the selected folder; a new task gets a distinct record; GitHub/GitLab/Jira selection retains its project reference; optional planning is linked without duplicating status; inaccessible external target leaves a pending draft and blocker; concurrent edits are preserved or explicitly reconciled. These are expected outcomes, not executed service-integration results. Actual T06 checks belong to its [execution record](../examples/project-coordination/run.md).
 
 ## Acceptance and evidence
 

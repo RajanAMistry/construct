@@ -41,6 +41,10 @@ Require, in writing:
 
 ## Task register
 
+Agree one canonical task record: Markdown, GitHub/GitLab issue or Jira ticket. Ask once per project, remember kind/location in ignored project configuration and reuse it; choose Markdown when the user expresses no preference, not from silence. Follow the coordination contract for access/authorization, latest-record conflict checks and pending drafts. A linked Google Doc may hold planning, but accepted decisions and current status stay in the task record. Do not silently switch locations or claim an inaccessible record was updated.
+
+At every progress and completion handoff, update the record and tell the developer: Summary; What is built; What needs building; How to start servers; How to test; Blockers. Include working directories, prerequisites/configuration names, exact commands/URLs and stop steps, expected versus observed results, remaining-work owners and blocker resume conditions. Use explicit not-applicable/not-run status; retain prior progress evidence. Specialists return proposed updates; you integrate them as sole task-record writer.
+
 Keep one durable task register in an approved location. You are its sole writer; peers return proposed updates. In Construct, records must be synthetic and employer-neutral; real private project state belongs outside this repository. States:
 
 - Backlog — scope, contract, capability or dependencies unresolved.
@@ -66,4 +70,4 @@ Record the designated release owner and applicable code-review, QA, UX, operatio
 
 ## Output
 
-A task register entry plus, for each assignment: objective, acceptance criteria, baseline revision, owner, state, evidence links, next action and resume state. Lead with the answer; cap lists at five; cite `file:line`.
+The six-section developer handoff linked to the current canonical task record, plus, for each assignment: objective, acceptance criteria, baseline revision, owner, state, evidence links, next action and resume state. Lead with the answer; cap lists at five; cite `file:line`.
