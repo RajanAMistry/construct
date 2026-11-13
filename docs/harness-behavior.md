@@ -43,6 +43,32 @@ Codex `0.167.0-alpha.4` reported existing ChatGPT sign-in metadata. A bounded `c
 
 Read-only HTTP probes to `auth.openai.com` and `chatgpt.com` received proxy 403 responses. No OAuth flow was started and no account tokens were copied from Codex into OpenCode. Live OpenAI/ChatGPT authentication and model-backed checks are deferred to the local environment using its supported sign-in flow and existing connections under [tool preflight](tool-preflight.md). Before H1–H6, resolve the local runtime storage/access, confirm the exact installed versions and active adapter, and use only synthetic inputs. Follow the acceptance table below; profile discovery alone does not close T07. Desktop-app integration was not tested.
 
+## Codex-first follow-up (2026-11-14, Asia/Kolkata)
+
+The agreed follow-up scope was Codex H1–H5 in a disposable project, using the existing installation and authentication. Construct baseline: `70674e9`. This was a new execution attempt, not a rerun of the four-harness acceptance suite.
+
+Local inspection found Codex `0.167.0-alpha.4`; Claude Code, OpenCode and pi were absent from PATH. `codex login status` reported existing ChatGPT sign-in metadata. This does not verify model access. The checkout had no project-local `.codex` directory, so the generated profiles were not activated there by that discovery path. The adapter directory alone does not establish activation through another configuration source.
+
+A disposable project was prepared outside the repository with copies of the generated planner/reviewer TOML profiles in `.codex/agents/` and a synthetic `scratch/brief.md` identifying baseline `sample-r1`. No credentials were copied, configuration stores edited or installations changed. A bounded preflight used the installed CLI:
+
+```bash
+codex exec --ephemeral --json --skip-git-repo-check \
+  --sandbox read-only -C <disposable-project> \
+  'Read scratch/brief.md and return only ACK sample-r1. Do not invoke tools other than reading the brief. Do not write files or contact external services beyond the configured model.'
+```
+
+The command exited 1 before the 45-second limit, with zero stdout bytes and `failed to initialize in-process app-server client: Read-only file system (os error 30)`. It also warned that PATH aliases could not be created. Profile discovery, a model response and a specialist acknowledgment were not observed. The test stopped at initialization rather than repeating the previously unsuccessful storage overrides or changing the existing runtime.
+
+| Check | Follow-up result | Remaining execution |
+| --- | --- | --- |
+| H1 | Blocked before invocation; placing profiles is not discovery evidence | On a working authorized runtime, observe planner/reviewer discovery, then exact-baseline acknowledgment and return |
+| H2 | Not run; dependent on H1 | Deliver a synthetic question, answer and acknowledgment directly if available, otherwise through the lead |
+| H3 | Not run; dependent on H1 | Exercise lead-only register updates, a stale worker baseline, disjoint integration and interruption recovery |
+| H4 | Not run; read-only CLI option is not enforcement evidence | Observe effective tools and separately test harmless reviewer and shell-write negatives against disposable sentinel files |
+| H5 | Not run; dependent on H1 | Exercise a missing tool and failed handoff, one rework, escalation and stopping before the next task |
+
+Next owner: release-operations establishes a working Codex runtime without changing existing credentials; QA then observes H1–H5 against the exact version and candidate. Use the already documented acceptance table, preserve raw logs outside Construct and obtain independent QA. This follow-up is self-review only. T07 remains incomplete, and the other three harnesses remain outside this follow-up scope.
+
 ## Coordinator-mediated handoff
 
 Use the existing [coordination contract](project-coordination.md), [assignment](../templates/agent-assignment.md) and [register](../templates/task-register.md). Delivery-lead remains the sole register writer. Native messaging is optional; acknowledgment and traceable decisions are required.
