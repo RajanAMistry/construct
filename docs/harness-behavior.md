@@ -1,6 +1,6 @@
 # Harness behavior and verification
 
-Status: Draft. T07 is incomplete. This report separates upstream source evidence, local CLI observations and unrun behavior checks. Generated adapters do not prove runtime support.
+Status: Draft. T07 was closed at maintainer request on 2026-11-14 with remaining live verification deferred. This report separates upstream source evidence, local CLI observations and unrun behavior checks. Generated adapters do not prove runtime support.
 
 ## Scope and observed environment
 
@@ -41,7 +41,7 @@ For a local rerun, use an existing authorized OpenCode v2 installation in a disp
 
 Codex `0.167.0-alpha.4` reported existing ChatGPT sign-in metadata. A bounded `codex exec --ephemeral --json --skip-git-repo-check --sandbox read-only` acknowledgment preflight in the disposable project failed while initializing its in-process app-server. Redirecting documented SQLite/log locations into temporary directories did not fix the failure. A file-operation trace located a refused runtime `installation_id` creation under the read-only Codex home; a scoped per-command filesystem grant did not resolve it. No credentials or installed executables were changed to work around the blocker. This is an environment initialization failure, not evidence against Construct profile support or provider validity.
 
-Read-only HTTP probes to `auth.openai.com` and `chatgpt.com` received proxy 403 responses. No OAuth flow was started and no account tokens were copied from Codex into OpenCode. Live OpenAI/ChatGPT authentication and model-backed checks are deferred to the local environment using its supported sign-in flow and existing connections under [tool preflight](tool-preflight.md). Before H1–H6, resolve the local runtime storage/access, confirm the exact installed versions and active adapter, and use only synthetic inputs. Follow the acceptance table below; profile discovery alone does not close T07. Desktop-app integration was not tested.
+Read-only HTTP probes to `auth.openai.com` and `chatgpt.com` received proxy 403 responses. No OAuth flow was started and no account tokens were copied from Codex into OpenCode. Live OpenAI/ChatGPT authentication and model-backed checks are deferred to the local environment using its supported sign-in flow and existing connections under [tool preflight](tool-preflight.md). Before H1–H6, resolve the local runtime storage/access, confirm the exact installed versions and active adapter, and use only synthetic inputs. Follow the acceptance table below; profile discovery alone does not establish full runtime acceptance. Desktop-app integration was not tested.
 
 ## Codex-first follow-up (2026-11-14, Asia/Kolkata)
 
@@ -67,7 +67,13 @@ The command exited 1 before the 45-second limit, with zero stdout bytes and `fai
 | H4 | Not run; read-only CLI option is not enforcement evidence | Observe effective tools and separately test harmless reviewer and shell-write negatives against disposable sentinel files |
 | H5 | Not run; dependent on H1 | Exercise a missing tool and failed handoff, one rework, escalation and stopping before the next task |
 
-Next owner: release-operations establishes a working Codex runtime without changing existing credentials; QA then observes H1–H5 against the exact version and candidate. Use the already documented acceptance table, preserve raw logs outside Construct and obtain independent QA. This follow-up is self-review only. T07 remains incomplete, and the other three harnesses remain outside this follow-up scope.
+Next owner: release-operations establishes a working Codex runtime without changing existing credentials; QA then observes H1–H5 against the exact version and candidate. Use the already documented acceptance table, preserve raw logs outside Construct and obtain independent QA. This follow-up is self-review only. At the end of this attempt, T07 remained incomplete, and the other three harnesses remained outside this follow-up scope.
+
+## Maintainer closure (2026-11-14, Asia/Kolkata)
+
+The maintainer requested that T07 be checked off and work move to T08. The accepted closure scope is the documented capability map, source evidence, relay procedure and partial discovery results. Remaining live checks and independent QA are deferred. Full runtime acceptance has not passed, and the report remains Draft.
+
+The acceptance table below retains the remaining work: H1 assignment/return and H2–H5 for each harness, H6 runtime/permission checks and independent QA. Release-operations owns establishing working authorized runtimes; QA owns observing and recording the checks if a later verification effort is authorized. Existing blocked and not-run results remain unchanged.
 
 ## Coordinator-mediated handoff
 
@@ -105,7 +111,7 @@ Run in an approved disposable project with synthetic inputs, using existing auth
 | H5: failure and stop, each harness | Missing tool and failed handoff remain blocked; one focused rework maximum before escalation; no unauthorized side effect or next task starts. | Not run. QA exercises synthetic failure; lead records outcome. |
 | H6: OpenCode adapter compatibility | Choose exact target release; validate generated config against its schema and run discovery/permission checks. Correct canonical generator and regenerate only after target is established. | Partial: v2.2.6 runtime accepts current config/profiles and resolves expected rules; v2 source confirms the schema. Permission negatives and runtime invocation remain unrun. No generator change indicated by current evidence. |
 
-T07 remains unchecked until the map and actual direct-or-relayed workflows have version-specific evidence for all four harnesses. A supported fallback can satisfy communication acceptance; an unavailable harness or unrun permission check cannot be counted as pass. Obtain independent QA where required; this report has only self-review. The VM follow-up changed only documentation in Construct; the temporary OpenCode runtime is not part of the repository or an adapter change. Live tests are deferred, not waived or passed.
+Full runtime acceptance requires the map and actual direct-or-relayed workflows to have version-specific evidence for all four harnesses. A supported fallback can satisfy communication acceptance; an unavailable harness or unrun permission check cannot be counted as pass. Obtain independent QA where required; this report has only self-review. The VM follow-up changed only documentation in Construct; the temporary OpenCode runtime is not part of the repository or an adapter change. Live tests remain deferred under the maintainer closure above; no additional behavior checks passed as part of that decision.
 
 ## Research sources
 
