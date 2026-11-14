@@ -10,7 +10,7 @@ Baseline: `<exact revision, configuration and environment; supplied diff when di
 
 Allowed writes: `<specific paths or none>`. Shared-file writer: `<reference>`. Prohibited areas/actions: `<unassigned files, credentials, private data and external-action limits>`. Required skills: `<relevant skills, loaded after construct>`. Available tools/access: `<observed tool names, permissions and limitations>`. Missing capability/tool fallback: `<agreed alternative or blocker>`. Never change credentials or installations implicitly.
 
-Checks to perform: `<criteria → check/expected result; applicable gate and reviewer>`. Expected outputs: `<changed files/diff, revision, exact check results/evidence, defects, limitations and next action>`. Evidence kind: `<executed/reviewed/synthetic expectation; never prefill pass>`.
+Checks to perform: `<accepted criterion IDs/revision → check/expected result; relevant failure or prohibited side effect; applicable gate and reviewer>`. Expected outputs: `<criterion → changed paths/checks; revision, actual results/evidence, defects, limitations and next action; link to the canonical acceptance evidence table>`. Evidence kind: `<executed/reviewed/synthetic expectation; never prefill pass>`.
 
 Budget: `<attempt/time/cost limits>`. Stop/escalation conditions: `<scope ambiguity, conflict, missing access, repeated failure or exhausted budget>`. Consultation route: `<relevant specialist; direct tool if available, otherwise lead relay>`. A consultation request includes ID, revision, question/finding, evidence, requested answer and blocker status.
 

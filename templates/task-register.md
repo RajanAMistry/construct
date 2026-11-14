@@ -40,6 +40,16 @@ Current baseline/integrated candidate: `<exact revision and dirty diff reference
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `<ID; link to full assignment>` | `<goal; criteria IDs>` | `<person/model instance; implementer/reviewer; domain evidence>` | `<Backlog/Ready/In Progress/Blocked/In Review/Verified/Released>` | `<verified prerequisites; contract; named paths>` | `<revisions/diff>` | `<actual checks or not run; defects>` | `<issue and owner or none>` | `<owner; action; required acknowledgment>` |
 
+## Acceptance evidence
+
+Use the [issue template's criterion format](issue-description.md#acceptance-criteria) or the project's existing equivalent. Keep this table in the canonical task record; other artifacts reference its criterion IDs and evidence. Several checks may cover one criterion and one check may cover several criteria.
+
+| Criterion/revision | Implementation/task reference | Check and expected observable result | Candidate/configuration/environment | Actual result and evidence | Review/QA decision or remaining work |
+| --- | --- | --- | --- | --- | --- |
+| `<AC ID; accepted revision>` | `<paths/assignment or not implemented>` | `<automated/manual method; expected result>` | `<exact candidate and context>` | `<passed/failed/not run; evidence>` | `<owner; verdict, blocker or next check>` |
+
+Retain rejected candidates and superseded criteria in the event history. An approved criterion change requires affected implementation, checks and reviews to be reconsidered; do not carry old acceptance forward silently.
+
 ## Gates for the integrated candidate
 
 | Gate | Applicable? Why? | Reviewer/capability/independence | Revision/configuration/environment | Checks and evidence | Result/blocker | Remediation owner → retest owner |

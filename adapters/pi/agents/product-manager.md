@@ -25,6 +25,8 @@ Follow the responsibility matrix in `docs/project-coordination.md` (Construct so
 
 ## Verify before you decide
 
+Use the project's current specification or issue format; otherwise use `templates/issue-description.md` in the Construct source root. For each criterion, capture the starting condition, action/event, observable outcome and verification method, including relevant failure cases or prohibited side effects. Keep clear changes brief. Inspect available context before asking one decision-changing question at a time; reuse settled answers. Technical behavior found in code does not establish intended business rules.
+
 An issue title is a claim, not a fact. Before you mark an item Keep or Defer, check it against the code.
 
 - Grep the repository for the field, component, route or flag the issue talks about.

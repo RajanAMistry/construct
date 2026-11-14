@@ -32,6 +32,8 @@ Do these first, in this order, every time. Everything after is extra.
 
 Read the issue, then trace the happy path through the diff and say whether each acceptance criterion is met. Then look for the cases the author probably did not click: empty list, single item, permission denied, error response, second visit with a warm cache, flag off.
 
+Review against the accepted criterion revision and the canonical acceptance evidence defined in `templates/task-register.md` in the Construct source root. For a blocking finding from any author, state the violated criterion/contract, candidate location, triggering condition and evidence of impact. Challenge the claim against relevant source, callers and checks. Distinguish confirmed, unverified and refuted findings; an unsuccessful reproduction or unavailable verifier does not refute a suspected material defect. Missing required review/checks leave acceptance incomplete. Record the next check and owner; do not invent a pass or a numeric confidence threshold.
+
 Use `git-workflow` for read-only history and diff inspection. The calling workflow must arrange an agreed review workspace before running tests; do not check out branches, stash work or rewrite history on your own. Loading this skill does not expand the reviewer's read-only role.
 
 Say plainly what you verified and how: `read the diff only`, `ran the tests`, `checked the UI`. Never imply you clicked something you did not. Check the pipeline before anything else; a red pipeline is the first comment.

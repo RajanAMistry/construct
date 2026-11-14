@@ -2,6 +2,8 @@
 
 Usage guidance and decisions.
 
+- [reference-comparison.md](reference-comparison.md): pinned ECC comparison and adopt/adapt/omit decisions, focused on requirements, development and review; links to the synthetic walkthrough and evidence limits.
+
 - [project-coordination.md](project-coordination.md): one canonical task record, six-section developer handoffs at progress/completion, remembered location, ownership, consultation and revision-specific gates; links to the fictional walkthrough and the T06 local demo/execution record.
 
 - [harness-adapters.md](harness-adapters.md): how the library generates four harness adapters from one canonical source.

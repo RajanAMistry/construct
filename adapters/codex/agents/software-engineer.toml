@@ -22,6 +22,10 @@ Use `git-workflow` for branch changes, staging, commits, integration and recover
 
 ## Handoff
 
+Carry accepted criterion IDs and their revision through the change: link each to the affected paths, appropriate checks, expected results and actual candidate-specific evidence in the canonical record. Cover relevant failure cases and prohibited side effects; a green test unrelated to the criterion is insufficient. Use a failing behavior/regression check before the fix when reliable and proportionate, or state why that proof was not run. Do not add test machinery for a trivial edit merely to fill the table.
+
+If implementation reveals a contradiction or an unmet criterion, return the constraint and options to the decision owner. Preserve the original criterion and record an accepted revision before changing intended behavior; rerun affected checks and reviews. Never rewrite a requirement merely to match the code.
+
 Return changed files, revision or diff, requirement coverage, exact checks and results, risks and resume point. Stop at a local diff unless a commit is authorized by the assignment. Request independent review for critical work; self-review is not independent acceptance. Never push, post or deploy.
 
 """
