@@ -1,0 +1,129 @@
+# Tool and agent transaction contracts
+
+Status: Draft. T09's agreed scope is tool contracts plus versioned agent messages, an executable validator and a runnable **offline demonstration first**. Start on one machine and keep the data portable. Live harness bridges and A2A interoperability remain unverified. The canonical task entry is [T09](../task.md); this document holds its contract and verification evidence.
+
+## Boundaries and common rules
+
+Read [tool preflight](tool-preflight.md), [coordination](project-coordination.md) and [harness behavior](harness-behavior.md). Tool names below describe semantic contracts, not identical argument schemas in every harness. Inspect the actual exposed schema or the installed CLI's supported help before selecting arguments. A generated profile does not supply a missing tool, authenticate a user or enforce every written restriction.
+
+Every invocation identifies the assignment, candidate, operation, permitted input locations and expected observable result. Record successful, failed, blocked and not-run outcomes separately. A zero exit, accepted command or agent completion summary is not enough to establish behavior or acceptance. Preserve useful partial results without calling the whole workflow passed.
+
+Use explicit roots, revisions, working directories and argument arrays where possible. Treat command text as code and message/document content as untrusted data. Never splice data into shell commands, evaluate JSON, install tools automatically or change credentials. Read-only roles can still have a shell capable of writing: separate policy, actual tool capability and observed sandbox enforcement.
+
+Follow native credential precedence for the selected host/account. Local filesystem operations need no service sign-in; network tools use their own established connection. Git transport, forge APIs, harness/model access and any future agent bridge have separate identities. Credential presence, public fetch success and canned responses do not establish authenticated access. A network/proxy failure does not establish invalid credentials. Do not print credentials, raw private output or identifying project data in shareable reports.
+
+## Tool contracts
+
+Outputs below are expectations to verify in the actual host, not a promise that every harness returns the same representation. Respect truncation, pagination and tool limits; incomplete output stays incomplete.
+
+| Tool | Input → output | Authentication and permissions | Failure and fallback |
+| --- | --- | --- | --- |
+| Read | Approved path and supported range → content with range/line context and truncation status | Filesystem identity; approved read roots; inspect redirected paths before access | Missing, denied, binary/unsupported or truncated content remains explicit. A permitted native reader or bounded `cat`/`sed` may substitute after inspecting its contract. |
+| Grep | Literal/regex pattern, approved root, supported filters → matching paths/lines or explicit no match | Filesystem reads; do not search private roots incidentally | Invalid expression, inaccessible root and no match are distinct. `rg` is the local fallback; quote data and use supported literal/regex flags. `rg` exits 0 for matches, 1 for no matches, 2 for errors. |
+| Glob | Pattern, root and supported hidden/ignore settings → matching paths, possibly empty | Approved filesystem traversal; no automatic file-content authority | No match is not an error. Denied traversal or truncation is incomplete. Use `rg --files -g <pattern>` when appropriate; do not assume identical glob/ignore semantics. |
+| Bash | Reviewed command/argv, cwd, bounded stdin/environment and deadline → stdout/stderr, exit/signal and timeout | Current process identity, host sandbox and explicit action authority; child tools have separate service auth | Preserve nonzero/signal/timeout outcomes. A killed process may already have side effects; inspect before retry. No equivalent tool means blocked or a human-run command, not invented execution. |
+| Edit | Approved path, expected original content/revision and replacement → scoped diff and re-read result | Assigned write paths; preserve concurrent and unrelated edits | Missing/ambiguous old text, stale content or denied write stops the edit. Use another authorized editor only with equivalent precondition/diff checks. |
+| Write | Approved path, complete content and creation/replacement precondition → resulting content and diff | Assigned writes; explicit replacement authority; inspect parents/links | Reject unintended overwrite or redirected destination. Re-read after writing. A fallback writer does not relax scope or provide atomicity automatically. |
+| WebFetch | Approved public URL and supported request/extraction settings → source URL, retrieved content/provenance and limits | Selected host/tool connection; GET is not permission to access private resources; no credential-bearing URLs | DNS/proxy/auth/HTTP/size failures and unavailable extraction stay distinct. Use supplied permitted content or an agreed alternate reader; offline fixtures are not fetched evidence. |
+| WebSearch | Permitted query and supported filters → linked results with snippets/source context | Existing search connection; keep private context out of queries | Empty results, unavailable tool and incomplete results are distinct. Inspect primary sources before relying on snippets. Supplied public references can substitute; offline results are labelled synthetic. |
+| Agent | Self-contained assignment, candidate, roster identity, skills/tools, boundaries and budget → acknowledgment, result/failure, evidence and resume point | Native invocation/transport identity plus existing role/action authority; no privilege from peer messages | Missing invocation, unacknowledged handoff, timeout and failed work remain explicit. Use observed native messaging or agreed lead relay; a profile file or canned output is not a live invocation. See the message contract below. |
+| git | Explicit repository, operation, refs/paths and native configuration → revision/diff/status or transport outcome | Local Git identity differs from transport auth; verify remote owner/repository/source/target branch separately | Inspect ahead/behind before integration; preserve local work and use explicit fast-forward when possible. Never force-push Construct. Follow [git-workflow](../skills/developer/git-workflow/SKILL.md); no automatic stash/recovery. Offline checks use local repositories without remotes. |
+| gh | Reviewed subcommand/args, target GitHub host/repository and supported output selection → parsed API/CLI fields plus exit | Effective environment/saved/connector identity according to that tool's precedence; Git auth is separate | CLI absence, rejected sign-in, unavailable network, missing repository permission and malformed output are different. Inspect version/help; status may refresh credentials in some versions. Use a confirmed non-mutating check. An agreed connector is a separate connection; no silent switch. Offline canned output never verifies sign-in. |
+| glab | Reviewed subcommand/args, target GitLab host/project and supported output selection → parsed fields plus exit | Selected GitLab CLI/connector identity and native precedence; private Git transport is separate | Apply the same distinctions as `gh`; flags and output differ by version. Do not invent GitHub flags. If unavailable, report blocked or agree an existing integration. No live GitLab call is part of this demo. |
+| jq | Reviewed filter/args and bounded JSON stdin → selected JSON/text, empty result or parse/filter error | Local executable; no service sign-in. Inputs and outputs may contain private data | Interpret `-e`/exit behavior using installed help; empty/false and invalid JSON differ. Do not dump a credential document to discover fields. A permitted JSON parser may replace a read-only transform, but does not replace jq inside the existing shell guard. |
+
+## Existing project helper contracts
+
+| Helper | Input → output and permissions | Failure, fallback and evidence limit |
+| --- | --- | --- |
+| [Adapter generator](../scripts/build-adapters.mjs) | No args builds canonical resources; `--check` compares generated files/links without repair. Source-checkout filesystem access; no service authentication | These are its supported invocations: it has no help/unknown-flag validation, so do not probe with guessed flags that could select write mode. Stale output fails check. Change canonical sources and regenerate; never hand-edit adapters. Consistency does not prove runtime discovery/enforcement. |
+| [Guided setup](../scripts/setup.mjs) / [installer](../scripts/setup/install.mjs) | Interactive selected targets → reviewed plan, explicit application, backups and recovery manifest; `--help`/`-h` alone prints help; unknown flag alone exits 1 without writes. Installer exports plan/apply APIs | No credentials/downloads/sign-in. Caller must approve `applyPlan`; stale plans and redirected parents are refused. Cancellation writes nothing; failures attempt scoped rollback. Existing tests supply broader evidence. Script/contract files added by T09 are source-checkout tools; the installer allowlist does not install them. |
+| [Outbound hook](../hooks/confirm-outbound.sh) / [patterns](../hooks/outbound.json) | Dialect plus JSON stdin with tool name/input → ask/deny JSON for known patterns, otherwise no decision; local Bash/jq and readable spec required | Empty output is **not enforcement success**. Missing jq/spec silently returns no decision; malformed input is not a reliable gate. Regex matching is incomplete. Pass literal command strings as inert payloads; never execute a push/post to test it. Native harness activation remains unverified. |
+| [Review queue](../examples/review-queue/queue.sh) | `list`, `brief <branch>`, `apply <branch>`, `restore <branch>`; `BASE`, external `OUT` → local branch listing/cache or branch/stash transition | Read [its walkthrough](../examples/review-queue/README.md). Existing work needs stash agreement. It records a stash message, not an exact object ID; restoration can be ambiguous. Cache normalization has limits for nonexistent/redirected paths. Keep this demonstration disposable; do not call it a general recovery tool. No network/forge auth. |
+| [Message validator](../scripts/agent-contracts.mjs) | Bounded UTF-8 JSON stdin → shape-only JSON summary. `--help` alone is read-only; other args exit 2. Exit 0 valid, 1 invalid/unsupported input; no message delivery or writes | Uses the checked-in schema and fails closed on unsupported schema keywords. It implements only that schema's keyword subset, not general JSON Schema. No input values are echoed in diagnostics. An external schema validator must support draft 2020-12; lifecycle/identity checks still require a coordinator. |
+
+The T09 demonstration checks these boundaries with actual local commands where safe and with **explicitly canned** network/agent/forge outcomes otherwise. It does not implement the general [offline validation runner](offline-validation.md), doctor collector or a private-configuration loader. The T04 fixture catalog is not reported as executed by these separate checks.
+
+## Portable agent message contract
+
+The authoritative shape is [agent-message.v1.schema.json](../contracts/agent-message.v1.schema.json). The [executable prototype](../scripts/agent-contracts.mjs) exports `parseMessage`, `validateMessage` and `TransactionBook`. See the [runnable example](../examples/agent-transactions/README.md).
+
+| Envelope field | Meaning |
+| --- | --- |
+| `version`, `kind`, `payload` | Version 1 plus one of eight typed payloads. Unknown versions, kinds, fields and incompatible payloads fail. Changing required semantics requires a reviewed version change. |
+| `message_id` | Unique message ID. Re-delivery with identical decoded content creates no duplicate transaction/event; its trusted receipt time still advances the clock, so a later call cannot backdate a response. Reusing the ID with changed content fails. Object key order does not matter. |
+| `task_id`, `work_id`, `transaction_id` | Current task, stable unit of work and one attempt. Retries preserve work ID and terms but use new transaction/message IDs. |
+| `candidate` | Exact revision or unique revision-plus-diff alias in the approved task record. Candidate aliases are never reused within a book, even when reverting content; previously accepted evidence cannot silently revive. |
+| `sender`, `recipient` | Roster identity claims. The coordinator binds sender to the trusted caller argument; this is **not authentication**. A real transport must establish that caller independently and enforce recipient routing/access. |
+| `sent_at_ms`, `in_reply_to` | Nonnegative safe-integer epoch milliseconds and the original request's message ID for replies; requests use null. The demo supplies synthetic time, without waiting. A real adapter needs a trusted clock policy. |
+
+IDs are portable ASCII identifiers, not absolute paths, URLs or shell commands. Artifact references contain a logical relative path and SHA-256. The prototype compares them with a caller-supplied, candidate-pinned in-memory artifact store; it never opens the referenced path or fetches a URL. The store's content is synthetic. Integrity establishes bytes and candidate association, not the truth of a result claim. Real adapters must resolve only approved artifact roots, check access/links/size/digest, and exchange accessible content across workspaces rather than assuming the same absolute path exists.
+
+Payloads and lifecycle:
+
+| Kind | Required payload / allowed transition |
+| --- | --- |
+| `assignment` | Coordinator → assigned owner: objective, criteria, inputs, allowed write references and deadline. Creates `requested`. Declared paths grant no filesystem authority. |
+| `consultation-request` | Any approved participant → another: focused question, evidence and deadline. Creates a separate transaction; peers can consult without changing task scope. |
+| `review-request` | Requester → roster reviewer/QA/security role: criteria, evidence and deadline. Creates `requested`. A roster label is not proof of qualification or independence. |
+| `acknowledgment` | Request recipient → requester: `accepted: true`; `requested` → `acknowledged`. It acknowledges the complete request, including candidate/terms. Missing context should instead return a failure. |
+| `result` | Assigned owner → requester after acknowledgment: summary, evidence and one check result for every assigned criterion. `acknowledged` → `completed`; failed/blocked/not-run checks remain visible and do not establish acceptance. |
+| `consultation-response` | Consulted peer → requester after acknowledgment: answer and evidence; `acknowledged` → `completed`. Consequential decisions still go to delivery-lead. |
+| `review-result` | Assigned reviewer → requester after acknowledgment: go/no-go, findings, criterion checks, evidence, remediation and retest owners. Go requires all requested checks passed and no findings; no-go requires findings. No-go stays in history; fix/retest responsibility is explicit. |
+| `failure` | Request recipient → requester before/after acknowledgment: supported code, summary and retryable flag; → `failed`. Includes missing tool/input, denied permission, execution failure, cancellation and exhausted budget. |
+
+`TransactionBook` is a synchronous, single-writer in-memory prototype. It validates schema/context, known participants, reversed reply route, correlation, timestamps, ordering and evidence **before accepting a state change**. Assignment authority belongs to the configured coordinator. The trusted caller must still check that the work is approved and within role/action scope; these checks do not enforce natural-language instructions, actual tool permissions or independent review.
+
+Deadlines must be in the future and at most 20 seconds from trusted receipt time. `expire(now)` records `timed-out` for active expired transactions. Late replies cannot revive work. One initial attempt and one retry are allowed per candidate/work ID; retry only after timeout or explicitly retryable failure, preserving request type, participants and terms except deadline. Retries are explicit calls, never automatic dispatch. Terminal success/no-go cannot be retried under the same work ID; rework uses a new approved candidate/work assignment. Limits of 128 transactions, 512 accepted messages and 1,024 events bound the prototype; a new run needs deliberate reconciliation, not silent reset to evade budgets.
+
+Only the coordinator can advance to a new unique candidate. Open work becomes stale; previous results/rejections remain historical and previous review go disappears from the current-candidate list. Snapshot copies cannot mutate the book. `current_review_go` lists individual review transactions only: it is not the task's aggregate gate, verification or release decision. Delivery-lead records accepted decisions/evidence in the existing canonical task record under [coordination](project-coordination.md). No second task board or automatic status synchronization is introduced.
+
+The CLI caps input at 128 KiB, rejects duplicate JSON keys and nesting deeper than 16 containers, and reports only schema-defined paths/error codes. Message limits and logical references are proportionate guardrails, not a secrets detector. Keep actual credential values, private context and raw harness logs out of public messages, fixtures and reports. The prototype neither executes payloads nor starts processes, handles credentials, persists a mailbox, schedules agents or recovers a crashed runtime. The demo's separate, fixed local command checks run only reviewed operations in disposable roots.
+
+## Harness fallback and future A2A mapping
+
+Use native messaging inside a harness when actually available, otherwise the existing lead relay. JSON can travel in a native message body or a local adapter's process input/output. A message file alone is neither notification nor acknowledgment. Validate the returned message and process outcome; an accepted process command is not a completed agent turn. Separate diagnostics from protocol stdout, bound buffers/deadlines, handle partial records and cancellation, and check the installed version's permission behavior before any unattended run. Never use an approval-bypass flag just to make an adapter work.
+
+Public upstream documentation reviewed 2026-11-14 supports programmatic integration approaches, not tested installed versions: [Codex non-interactive JSON/schema output](https://learn.chatgpt.com/docs/non-interactive-mode), [Claude programmatic JSON output](https://code.claude.com/docs/en/headless), [OpenCode commands](https://opencode.ai/docs/cli/commands/) and [pi RPC](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/rpc.md). Recheck installed help and pin actual versions before implementing each bridge. Current local availability is not full support evidence; the [behavior report](harness-behavior.md) retains runtime gaps. None of these four live bridges is implemented by T09.
+
+[A2A](https://a2a-protocol.org/latest/specification/) supplies messages, tasks, artifacts and protocol bindings for separate agent systems. [MCP](https://modelcontextprotocol.io/docs/getting-started/intro) supplies tool/data integration. A2A does not supply Construct's product acceptance or authority. The following is a **proposed mapping**, not an A2A implementation/conformance claim:
+
+| Construct | Future A2A adapter responsibility |
+| --- | --- |
+| Message ID and typed body | Map to A2A `messageId`; carry the Construct envelope as a structured-data Part. Keep the versioned application contract, not an invented A2A method. |
+| Task/work/transaction IDs | Retain application correlation in structured data; map returned server-assigned A2A task/context IDs explicitly rather than assuming they equal local IDs. |
+| Sender/recipient | Resolve approved Agent Cards/endpoints and transport authentication. A2A's user/agent role is not a Construct specialist identity or permission. |
+| Candidate and evidence | Keep candidate/digest checks in the application contract; expose permitted artifact content/references through A2A artifacts/parts with separate access checks. |
+| Acknowledgment, result and acceptance | Map real transport/task events without equating HTTP success, remote completion and Construct acceptance. Preserve failure, cancellation, timeout, replay and stale-candidate behavior. |
+
+Remaining live work: implement each version-pinned harness adapter, actual process/delivery/identity binding and bounded cancellation; choose/pin an A2A SDK/binding only when that bridge is implemented; establish local access and independent sandbox/permission checks; then observe cross-harness handoffs against synthetic tasks. Different-machine hosting, discovery, transport authentication, persistent queues, crash recovery and distributed concurrency are later decisions. One-machine portability here concerns data and the documented interface, not verified transport compatibility.
+
+## Acceptance and execution record
+
+| Criterion | Accepted offline outcome | Evidence |
+| --- | --- | --- |
+| AC1 | Every listed tool and project helper has I/O, authentication, permission, failure and fallback guidance | Tables above plus source/document review; actual versus canned coverage is identified in the example |
+| AC2 | Versioned schema and executable validator distinguish valid/invalid/usage without echoing payloads | D02, D03, D15 |
+| AC3 | Assignment, acknowledgment, consultation, result and review form a complete offline exchange | D01, D04, D05 |
+| AC4 | Duplicates, stale revisions, inaccessible/changed evidence and premature completion are refused without accepted-state mutation | D04, D06–D10 |
+| AC5 | Timeouts, explicit failures, retry budget and rework preserve evidence and stop conditions | D01, D11–D14, D16 |
+| AC6 | Real safe local commands and explicitly canned external outcomes demonstrate tool boundaries | T01–T05; no service sign-in/model/harness invocation |
+| AC7 | Portable data and future transport mapping have explicit implementation/evidence limits | Schema, fallback/mapping and remaining work above; no live/A2A pass claimed |
+| AC8 | Relevant structural/setup checks, separate review/QA and public-content review pass against the candidate | Passed for the offline scope; candidate-specific evidence and independence below |
+
+AC1–AC8 passed for the agreed offline scope on 2026-11-14 (Asia/Kolkata), against baseline `ecbf1d9`. The corrected ten-file candidate manifest has SHA-256 `f73962cad18ed737a39c8cd599867f859c9eb2ac2c46867abd9f4681f01d867c`. The primary author implemented the contracts, validator and checks. Separate reviewer, QA-verifier and security-privacy passes approved that candidate with no remaining findings. Code reviewer and QA did not author/design the repository implementation/tests; security advised on candidate-ID reuse and strict UTF-8 decoding, then verified the fixes. These are observed review runs, distinct from the demonstration's fictional participants.
+
+The initial candidate `56031c49cea9da227991372b25e80edeb9091a3fa1a4a697ee2ecc41eb409b29` passed 41 checks and source/security review, but independent QA rejected a replay-clock edge case: accepting an exact replay at a later receipt time did not prevent a subsequent backdated acknowledgment. The primary author fixed the clock update; QA owned retest. D16 passes on the correction and fails with only the fix removed in a disposable copy. QA, source review and security then rechecked the corrected candidate; the earlier verdicts did not silently carry forward.
+
+Observed final evidence: all 42 demonstration checks passed with no skips; all 17 setup checks and adapter consistency (68 files, 65 links) passed. QA independently reran 27 API/CLI probes and retained 2,790 comparisons against Python's Draft 2020-12 validator because the schema/validation logic was unchanged by the clock fix. The author separately checked 33 schema/CLI cases. The schema itself validated against draft 2020-12; 128 local Markdown links/anchors resolved. Reviewer/security probes covered replay atomicity and clock progression; complete proposed-file/staged-diff checks and contextual public-content review found no unresolved secrets/private material. No live sign-in, harness/model invocation, A2A conformance or OS-enforced network isolation was tested.
+
+Closure edits after candidate review update only this evidence, the T09 checkbox and the root index. Schema, runtime, demo, package commands and referenced paths remain unchanged, so their accepted execution evidence remains applicable. Closure text, links, staged contents and privacy are reviewed again before committing. Publication is a separate authorized Git step: inspect the commit and verify it against the target remote after the push; do not infer synchronization from these local test results.
+
+| Developer handoff | Current outcome |
+| --- | --- |
+| Summary | T09 AC1–AC8 met for the agreed offline scope; stop after T09 |
+| What is built | Tool/helper contracts, versioned schema, shape CLI, transaction book and executable synthetic demonstration |
+| What needs building | None in the agreed offline scope; the live adapter/A2A, identity, persistence and enforcement work above remains unverified |
+| How to start servers | Not applicable; this demonstration starts no server |
+| How to test | From the source checkout: `npm run demo:contracts`, `npm run check`, `npm run test:setup`; expected results are described in the example |
+| Blockers | None for offline acceptance; publication must still confirm the reviewed commit at the verified remote branch |

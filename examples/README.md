@@ -2,6 +2,8 @@
 
 Synthetic, reproducible examples.
 
+- [agent-transactions/](agent-transactions/README.md): runnable offline tool and agent protocol checks, including handoffs, review/rework, duplicates, stale evidence, deadlines and explicit failures; no live harness bridge.
+
 - [requirements-to-review/](requirements-to-review/README.md): synthetic request, criterion-to-change/check mapping, rejected candidate, correction and incomplete-review cases; a manual contract walkthrough with no executed application acceptance.
 
 - [project-coordination/](project-coordination/README.md): fictional brief, assignments and task register showing parallel work, specialist consultation, rejection/rework and acceptance handoff; a manual contract walkthrough, not executed product tests or live agent messaging.

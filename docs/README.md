@@ -2,6 +2,8 @@
 
 Usage guidance and decisions.
 
+- [tool-contracts.md](tool-contracts.md): T09 tool/helper contracts, portable versioned agent transactions, executable offline demo, acceptance evidence and unverified live/A2A mapping.
+
 - [reference-comparison.md](reference-comparison.md): pinned ECC comparison and adopt/adapt/omit decisions, focused on requirements, development and review; links to the synthetic walkthrough and evidence limits.
 
 - [project-coordination.md](project-coordination.md): one canonical task record, six-section developer handoffs at progress/completion, remembered location, ownership, consultation and revision-specific gates; links to the fictional walkthrough and the T06 local demo/execution record.

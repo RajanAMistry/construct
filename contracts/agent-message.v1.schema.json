@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:construct:agent-message:1",
+  "title": "Construct portable agent message, version 1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "message_id", "transaction_id", "work_id", "task_id", "candidate", "sender", "recipient", "sent_at_ms", "in_reply_to", "kind", "payload"],
+  "properties": {
+    "version": {"const": 1},
+    "message_id": {"$ref": "#/$defs/id"},
+    "transaction_id": {"$ref": "#/$defs/id"},
+    "work_id": {"$ref": "#/$defs/id"},
+    "task_id": {"$ref": "#/$defs/id"},
+    "candidate": {"$ref": "#/$defs/id"},
+    "sender": {"$ref": "#/$defs/id"},
+    "recipient": {"$ref": "#/$defs/id"},
+    "sent_at_ms": {"$ref": "#/$defs/time"},
+    "in_reply_to": {"type": ["string", "null"], "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}(?![\\s\\S])"},
+    "kind": {"type": "string"},
+    "payload": {"type": "object"}
+  },
+  "oneOf": [
+    {"properties": {"kind": {"const": "assignment"}, "payload": {"$ref": "#/$defs/assignment"}}},
+    {"properties": {"kind": {"const": "acknowledgment"}, "payload": {"$ref": "#/$defs/acknowledgment"}}},
+    {"properties": {"kind": {"const": "consultation-request"}, "payload": {"$ref": "#/$defs/consultationRequest"}}},
+    {"properties": {"kind": {"const": "consultation-response"}, "payload": {"$ref": "#/$defs/consultationResponse"}}},
+    {"properties": {"kind": {"const": "result"}, "payload": {"$ref": "#/$defs/result"}}},
+    {"properties": {"kind": {"const": "review-request"}, "payload": {"$ref": "#/$defs/reviewRequest"}}},
+    {"properties": {"kind": {"const": "review-result"}, "payload": {"$ref": "#/$defs/reviewResult"}}},
+    {"properties": {"kind": {"const": "failure"}, "payload": {"$ref": "#/$defs/failure"}}}
+  ],
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}(?![\\s\\S])"},
+    "time": {"type": "integer", "minimum": 0, "maximum": 9007199254740991},
+    "text": {"type": "string", "minLength": 1, "maxLength": 1024},
+    "path": {"type": "string", "maxLength": 256, "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(/[A-Za-z0-9][A-Za-z0-9._-]*)*(?![\\s\\S])"},
+    "artifact": {
+      "type": "object", "additionalProperties": false, "required": ["path", "sha256"],
+      "properties": {
+        "path": {"$ref": "#/$defs/path"},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}(?![\\s\\S])"}
+      }
+    },
+    "evidence": {"type": "array", "maxItems": 32, "uniqueItems": true, "items": {"$ref": "#/$defs/artifact"}},
+    "criteria": {"type": "array", "minItems": 1, "maxItems": 32, "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+    "check": {
+      "type": "object", "additionalProperties": false, "required": ["criterion", "result", "evidence"],
+      "properties": {
+        "criterion": {"$ref": "#/$defs/id"},
+        "result": {"enum": ["passed", "failed", "blocked", "not-run"]},
+        "evidence": {"$ref": "#/$defs/artifact"}
+      }
+    },
+    "checks": {"type": "array", "minItems": 1, "maxItems": 32, "items": {"$ref": "#/$defs/check"}},
+    "assignment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["objective", "criteria", "inputs", "allowed_writes", "deadline_ms"],
+      "properties": {
+        "objective": {"$ref": "#/$defs/text"},
+        "criteria": {"$ref": "#/$defs/criteria"},
+        "inputs": {"$ref": "#/$defs/evidence"},
+        "allowed_writes": {"type": "array", "maxItems": 32, "uniqueItems": true, "items": {"$ref": "#/$defs/path"}},
+        "deadline_ms": {"$ref": "#/$defs/time"}
+      }
+    },
+    "acknowledgment": {
+      "type": "object", "additionalProperties": false, "required": ["accepted"],
+      "properties": {"accepted": {"const": true}}
+    },
+    "consultationRequest": {
+      "type": "object", "additionalProperties": false, "required": ["question", "evidence", "deadline_ms"],
+      "properties": {
+        "question": {"$ref": "#/$defs/text"}, "evidence": {"$ref": "#/$defs/evidence"}, "deadline_ms": {"$ref": "#/$defs/time"}
+      }
+    },
+    "consultationResponse": {
+      "type": "object", "additionalProperties": false, "required": ["answer", "evidence"],
+      "properties": {"answer": {"$ref": "#/$defs/text"}, "evidence": {"$ref": "#/$defs/evidence"}}
+    },
+    "result": {
+      "type": "object", "additionalProperties": false, "required": ["summary", "evidence", "checks"],
+      "properties": {
+        "summary": {"$ref": "#/$defs/text"},
+        "evidence": {"$ref": "#/$defs/evidence", "minItems": 1}, "checks": {"$ref": "#/$defs/checks"}
+      }
+    },
+    "reviewRequest": {
+      "type": "object", "additionalProperties": false, "required": ["criteria", "evidence", "deadline_ms"],
+      "properties": {
+        "criteria": {"$ref": "#/$defs/criteria"}, "evidence": {"$ref": "#/$defs/evidence", "minItems": 1}, "deadline_ms": {"$ref": "#/$defs/time"}
+      }
+    },
+    "reviewResult": {
+      "type": "object", "additionalProperties": false, "required": ["verdict", "findings", "checks", "evidence", "remediation_owner", "retest_owner"],
+      "properties": {
+        "verdict": {"enum": ["go", "no-go"]},
+        "findings": {"type": "array", "maxItems": 32, "items": {"$ref": "#/$defs/text"}},
+        "checks": {"$ref": "#/$defs/checks"}, "evidence": {"$ref": "#/$defs/evidence", "minItems": 1},
+        "remediation_owner": {"$ref": "#/$defs/id"}, "retest_owner": {"$ref": "#/$defs/id"}
+      }
+    },
+    "failure": {
+      "type": "object", "additionalProperties": false, "required": ["code", "summary", "retryable"],
+      "properties": {
+        "code": {"enum": ["missing-input", "tool-unavailable", "permission-denied", "execution-failed", "cancelled", "budget-exhausted"]},
+        "summary": {"$ref": "#/$defs/text"}, "retryable": {"type": "boolean"}
+      }
+    }
+  }
+}

@@ -10,7 +10,9 @@
     "build": "node scripts/build-adapters.mjs",
     "check": "node scripts/build-adapters.mjs --check",
     "setup": "node scripts/setup.mjs",
-    "test:setup": "node --test test/setup.test.mjs"
+    "test:setup": "node --test test/setup.test.mjs",
+    "check:message": "node scripts/agent-contracts.mjs",
+    "demo:contracts": "node --test examples/agent-transactions/demo.test.mjs"
   },
   "pi": {
     "skills": ["./adapters/pi/skills"],
